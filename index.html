@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ananthakrishnan S | Embedded Systems & Robotics Engineer</title>
+  <meta name="description"
+    content="Portfolio of Ananthakrishnan S — Embedded Systems Engineer, Robotics Developer, and Applied AI Builder.">
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-secondary: #F5F5F5;
+      --dark: #0A0A0A;
+      --text: #000000;
+      --text-muted: #666666;
+      --text-subtle: #999999;
+      --border: #E5E5E5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--text);
+    }
+
+    /* ===== FONTS ===== */
+    .font-display {
+      font-family: 'Anton', sans-serif;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ===== MARQUEE ===== */
+    .marquee-wrap {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-track-slow {
+      display: inline-block;
+      animation: marquee 40s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ===== GLASSMORPHIC NAV ===== */
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+      border-radius: 100px;
+    }
+
+    /* ===== HIDE SCROLLBAR (horizontal scroll) ===== */
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* ===== TERMINAL CURSOR ===== */
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline-line {
+      position: absolute;
+      left: 6px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-node {
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      transition: all 0.3s ease;
+    }
+
+    .timeline-node.active {
+      background: var(--text);
+      border-color: var(--text);
+    }
+
+    .timeline-item {
+      padding-left: 40px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .timeline-item:hover {
+      transform: translateX(12px);
+    }
+
+    .timeline-item:hover .timeline-node {
+      border-color: var(--text);
+    }
+
+    .timeline-desc {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-desc {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    /* ===== PROJECT CARDS ===== */
+    .project-card {
+      flex-shrink: 0;
+      width: 360px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .project-card img {
+      filter: grayscale(100%);
+      transition: filter 0.5s ease, transform 0.5s ease;
+    }
+
+    .project-card:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .project-card {
+        width: 300px;
+      }
+
+      .hero-side-text {
+        display: none;
+      }
+    }
+
+    /* ===== CONTACT CARDS ===== */
+    .contact-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      height: 480px;
+    }
+
+    .card-header {
+      background: white;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .window-controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-controls .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .window-controls .red {
+      background-color: #ff5f56;
+    }
+
+    .window-controls .yellow {
+      background-color: #ffbd2e;
+    }
+
+    .window-controls .green {
+      background-color: #27c93f;
+      cursor: pointer;
+      display: block;
+    }
+
+    .maximize-btn {
+      position: relative;
+    }
+
+    .maximize-btn:hover::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      border: 3px solid transparent;
+      border-top-color: rgba(0, 0, 0, 0.4);
+      border-left-color: rgba(0, 0, 0, 0.4);
+      width: 0;
+      height: 0;
+    }
+
+    .card-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #999;
+      letter-spacing: 0.1em;
+    }
+
+    .card-content {
+      padding: 24px;
+      flex-grow: 1;
+    }
+
+    .scrollable {
+      overflow-y: auto;
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE/Edge */
+    }
+
+    .scrollable::-webkit-scrollbar {
+      display: none;
+      /* Chrome/Safari */
+    }
+
+    .card-footer {
+      padding: 16px 24px 24px;
+      background: white;
+    }
+
+    .card-btn {
+      display: block;
+      text-align: center;
+      width: 100%;
+      padding: 12px 0;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 100px;
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .card-btn:hover {
+      background: #fafafa;
+      color: #000;
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    /* LinkedIn Specific */
+    .profile-center {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-pic-large-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .profile-pic-large {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .badge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0a66c2;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* GitHub Specific */
+    .profile-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .profile-pic-small {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .repo-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .repo-item {
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 12px;
+      padding: 16px;
+      background: #fafafa;
+    }
+
+    .repo-item h5 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .repo-stats {
+      display: flex;
+      align-items: center;
+    }
+
+    .lang-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    .lang-dot.python {
+      background-color: #f1e05a;
+    }
+
+    .lang-dot.c {
+      background-color: #555555;
+    }
+
+    .lang-dot.java {
+      background-color: #b07219;
+    }
+
+    /* Instagram Specific */
+    .profile-row.inst {
+      margin-bottom: 20px;
+    }
+
+    .insta-ring {
+      padding: 3px;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      border-radius: 50%;
+    }
+
+    .insta-ring img {
+      display: block;
+      border: 2px solid white;
+      width: 58px;
+      height: 58px;
+    }
+
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .insta-img {
+      aspect-ratio: 1;
+      background-size: cover;
+      background-position: center;
+      background-color: #eaeaea;
+    }
+
+    /* placeholders for insta images - can add generic images later */
+    .bg-img1 {
+      background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+    }
+
+    .bg-img2 {
+      background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+    }
+
+    .bg-img3 {
+      background-image: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+    }
+
+    .bg-img4 {
+      background-image: url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+    }
+
+    .bg-img5 {
+      background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+    }
+
+    .bg-img6 {
+      background-image: url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+    }
+
+    /* ===== WAVY SKILLS ===== */
+    .skill-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║           NAVIGATION                     ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <nav class="glass-nav"
+    style="position:fixed; top:28px; left:50%; transform:translateX(-50%); z-index:100; padding:10px 12px 10px 28px; display:flex; align-items:center; gap:32px;">
+    <!-- Logo -->
+    <a href="#hero" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit;">
+      <div
+        style="width:32px; height:32px; background:#000; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+        <span style="color:#fff; font-weight:700; font-size:14px;">A</span>
+      </div>
+      <span style="font-size:13px; font-weight:600; letter-spacing:0.02em; display:none;"
+        class="nav-name">ANANTHAKRISHNAN</span>
+    </a>
+
+    <!-- Links (desktop) -->
+    <div style="display:flex; align-items:center; gap:24px;" class="nav-links">
+      <a href="#about"
+        style="font-size:13px; font-weight:500; color:var(--text-muted); text-decoration:none; transition:color 0.2s;"
+        onmouseover="this.style.color='#000'" onmouseout="this.style.color='var(--text-muted)'">ABOUT</a>
+      <a href="#experience"
+        style="font-size:13px; font-weight:500; color:var(--text-muted); text-decoration:none; transition:color 0.2s;"
+        onmouseover="this.style.color='#000'" onmouseout="this.style.color='var(--text-muted)'">EXPERIENCE</a>
+      <a href="#projects"
+        style="font-size:13px; font-weight:500; color:var(--text-muted); text-decoration:none; transition:color 0.2s;"
+        onmouseover="this.style.color='#000'" onmouseout="this.style.color='var(--text-muted)'">PROJECTS</a>
+      <a href="#contact"
+        style="font-size:13px; font-weight:500; color:var(--text-muted); text-decoration:none; transition:color 0.2s;"
+        onmouseover="this.style.color='#000'" onmouseout="this.style.color='var(--text-muted)'">CONTACT</a>
+    </div>
+
+    <!-- CTA -->
+    <a href="#contact"
+      style="padding:8px 20px; border-radius:100px; border:1.5px solid #000; font-size:13px; font-weight:600; text-decoration:none; color:#000; transition:all 0.3s;"
+      onmouseover="this.style.background='#000';this.style.color='#fff'"
+      onmouseout="this.style.background='transparent';this.style.color='#000'">HIRE ME</a>
+  </nav>
+
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║           HERO SECTION                   ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section id="hero" style="position:relative; height:100vh; width:100%; overflow:hidden; background:var(--bg);">
+
+    <!-- Scrolling Name Background -->
+    <div
+      style="position:absolute; inset:0; display:flex; align-items:center; z-index:1; pointer-events:none; user-select:none;"
+      class="marquee-wrap">
+      <div class="marquee-track-slow">
+        <span class="font-display"
+          style="font-size:20vw; line-height:0.9; letter-spacing:-0.02em; text-transform:uppercase; color:#000; white-space:nowrap;">
+          ANANTHAKRISHNAN S&nbsp;&nbsp;&nbsp;ANANTHAKRISHNAN S&nbsp;&nbsp;&nbsp;ANANTHAKRISHNAN
+          S&nbsp;&nbsp;&nbsp;ANANTHAKRISHNAN S&nbsp;&nbsp;&nbsp;
+        </span>
+      </div>
+    </div>
+
+    <!-- Decorative Curves -->
+    <svg style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2; opacity:0.15;">
+      <path d="M 250 80 Q 420 350 250 550" fill="none" stroke="#E5E5E5" stroke-width="1" />
+      <path d="M 1150 150 Q 980 380 1150 580" fill="none" stroke="#E5E5E5" stroke-width="1" />
+    </svg>
+
+    <!-- Left Side Text -->
+    <div class="hero-side-text" style="position:absolute; left:48px; top:20%; z-index:15;">
+      <p style="color:var(--text-subtle); font-size:13px; margin-bottom:8px; letter-spacing:0.05em;">Freelance</p>
+      <p style="font-weight:500; font-size:15px; line-height:1.5;">Embedded Systems Engineer</p>
+      <p style="font-weight:500; font-size:15px; line-height:1.5;">Robotics Systems Developer</p>
+
+    </div>
+
+    <!-- Center Portrait -->
+    <div id="hero-image"
+      style="position:absolute; inset:0; display:flex; align-items:flex-end; justify-content:center; z-index:10; pointer-events:none;">
+      <img src="your-photo.jpg" alt="Ananthakrishnan S"
+        style="height:75vh; width:auto; object-fit:contain; object-position:center bottom; filter:drop-shadow(0 20px 60px rgba(0,0,0,0.12));">
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div
+      style="position:absolute; bottom:48px; right:48px; z-index:20; display:flex; flex-direction:column; align-items:center; gap:12px;">
+      <span
+        style="writing-mode:vertical-lr; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.4em; color:var(--text-subtle);">Scroll
+        down</span>
+      <div style="width:1px; height:40px; background:var(--border);"></div>
+      <i class="fas fa-chevron-down"
+        style="font-size:12px; color:var(--text-subtle); animation: bounce-arrow 2s infinite;"></i>
+    </div>
+  </section>
+
+  <style>
+    @keyframes bounce-arrow {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(6px);
+      }
+    }
+  </style>
+
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║         ABOUT SECTION (DARK)             ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section id="about"
+    style="background:var(--dark); color:#fff; min-height:100vh; padding:120px 48px; position:relative;">
+
+    <!-- Section Number -->
+    <span class="font-mono"
+      style="position:absolute; top:40px; right:48px; color:var(--text-subtle); font-size:13px;">01/04</span>
+
+    <div style="max-width:1400px; margin:0 auto;">
+      <!-- Title -->
+      <h2 class="font-display reveal" style="font-size:clamp(60px, 15vw, 200px); line-height:0.9; margin-bottom:64px;">
+        <span style="color:var(--text-subtle);">/</span>ABOUT
+      </h2>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:end;">
+        <!-- Arrow -->
+        <div class="reveal" style="display:flex; align-items:flex-end;">
+          <i class="fas fa-arrow-up"
+            style="font-size:100px; color:var(--text-subtle); transform:rotate(45deg); opacity:0.4;"></i>
+        </div>
+
+        <!-- Content -->
+        <div class="reveal" style="max-width:600px;">
+          <p style="font-size:18px; line-height:1.7; color:rgba(255,255,255,0.7); margin-bottom:24px;">
+            I am an Electronics and Communication Engineering undergraduate (Class of 2026) with hands-on experience in
+            robotics, embedded systems, computer vision, and full-stack web development. I focus on building end-to-end
+            hardware–software systems, integrating robotics, embedded firmware, and intelligent software into practical
+            solutions.
+          </p>
+          <p style="font-size:18px; line-height:1.7; color:rgba(255,255,255,0.7); margin-bottom:24px;">
+            My work includes ROS2-based robotic control systems, PID control simulations in Gazebo, computer vision
+            pipelines using OpenCV and YOLO, and embedded development with ESP32 and Raspberry Pi. In addition to
+            engineering projects, I have also designed and developed multiple professional websites and web applications
+            for clients, delivering scalable and user-focused digital solutions.
+          </p>
+          <p style="font-size:18px; line-height:1.7; color:rgba(255,255,255,0.7); margin-bottom:32px;">
+            I specialize in system integration, connecting hardware, firmware, AI, and web platforms to create complete,
+            deployable products.
+          </p>
+
+          <!-- Status Badge -->
+          <div
+            style="display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,0.08); border-radius:100px; padding:10px 20px;">
+            <span
+              style="width:8px; height:8px; background:#fff; border-radius:50%; animation:blink 2s infinite;"></span>
+            <span class="font-mono" style="font-size:13px; color:rgba(255,255,255,0.7);">Currently seeking Robotics and
+              Embedded Systems internship opportunities.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wavy Skills Animation -->
+    <div style="margin-top:96px; padding:24px 0; overflow:hidden; position:relative;">
+      <div id="wavy-skills" style="display:flex; gap:24px; padding-left:24px; width:max-content;">
+        <!-- Icons injected via js, but let's add them directly here to avoid layout shifts -->
+        <div class="skill-icon" style="background:#f1502f; color:#fff;"><i class="fab fa-git-alt"></i></div>
+        <div class="skill-icon" style="background:#e34c26; color:#fff;"><i class="fab fa-html5"></i></div>
+        <div class="skill-icon" style="background:#f89820; color:#fff;"><i class="fab fa-java"></i></div>
+        <div class="skill-icon" style="background:#3776ab; color:#fff;"><i class="fab fa-python"></i></div>
+        <div class="skill-icon" style="background:#00599c; color:#fff;"><span
+            style="font-size:14px; font-weight:bold;">C++</span></div>
+        <div class="skill-icon" style="background:#f7df1e; color:#000;"><i class="fab fa-js-square"></i></div>
+        <div class="skill-icon" style="background:#264de4; color:#fff;"><i class="fab fa-css3-alt"></i></div>
+        <div class="skill-icon" style="background:#61dbfb; color:#000;"><i class="fab fa-react"></i></div>
+        <div class="skill-icon" style="background:#02569b; overflow:hidden;"><img src="flutter.png" alt="Flutter"
+            style="width:40px; height:40px; object-fit:contain;"></div>
+        <div class="skill-icon" style="background:#4d4d4d; color:#fff;"><i class="fas fa-terminal"></i></div>
+        <div class="skill-icon" style="background:#fcc624; color:#000;"><i class="fab fa-linux"></i></div>
+        <div class="skill-icon" style="background:#3ddc84; color:#fff;"><i class="fab fa-android"></i></div>
+        <div class="skill-icon" style="background:#000; overflow:hidden;"><img src="antigravity.png" alt="AntiGravity"
+            style="width:48px; height:48px; object-fit:contain;"></div>
+        <div class="skill-icon" style="background:#e74c3c; color:#fff;"><i class="fas fa-robot"></i></div>
+        <div class="skill-icon" style="background:#00979d; color:#fff;"><i class="fas fa-microchip"></i></div>
+        <div class="skill-icon" style="background:#8e44ad; color:#fff;"><i class="fas fa-satellite-dish"></i></div>
+        <div class="skill-icon" style="background:#f39c12; color:#fff;"><i class="fas fa-chalkboard-teacher"></i></div>
+        <div class="skill-icon" style="background:#000; overflow:hidden;"><img src="nukelabs.png" alt="Nuke Labs"
+            style="width:48px; height:48px; object-fit:contain;"></div>
+
+        <!-- Duplicated for continuous infinite scrolling -->
+        <div class="skill-icon" style="background:#f1502f; color:#fff;"><i class="fab fa-git-alt"></i></div>
+        <div class="skill-icon" style="background:#e34c26; color:#fff;"><i class="fab fa-html5"></i></div>
+        <div class="skill-icon" style="background:#f89820; color:#fff;"><i class="fab fa-java"></i></div>
+        <div class="skill-icon" style="background:#3776ab; color:#fff;"><i class="fab fa-python"></i></div>
+        <div class="skill-icon" style="background:#00599c; color:#fff;"><span
+            style="font-size:14px; font-weight:bold;">C++</span></div>
+        <div class="skill-icon" style="background:#f7df1e; color:#000;"><i class="fab fa-js-square"></i></div>
+        <div class="skill-icon" style="background:#264de4; color:#fff;"><i class="fab fa-css3-alt"></i></div>
+        <div class="skill-icon" style="background:#61dbfb; color:#000;"><i class="fab fa-react"></i></div>
+        <div class="skill-icon" style="background:#02569b; overflow:hidden;"><img src="flutter.png" alt="Flutter"
+            style="width:40px; height:40px; object-fit:contain;"></div>
+        <div class="skill-icon" style="background:#4d4d4d; color:#fff;"><i class="fas fa-terminal"></i></div>
+        <div class="skill-icon" style="background:#fcc624; color:#000;"><i class="fab fa-linux"></i></div>
+        <div class="skill-icon" style="background:#3ddc84; color:#fff;"><i class="fab fa-android"></i></div>
+        <div class="skill-icon" style="background:#000; overflow:hidden;"><img src="antigravity.png" alt="AntiGravity"
+            style="width:48px; height:48px; object-fit:contain;"></div>
+        <div class="skill-icon" style="background:#e74c3c; color:#fff;"><i class="fas fa-robot"></i></div>
+        <div class="skill-icon" style="background:#00979d; color:#fff;"><i class="fas fa-microchip"></i></div>
+        <div class="skill-icon" style="background:#8e44ad; color:#fff;"><i class="fas fa-satellite-dish"></i></div>
+        <div class="skill-icon" style="background:#f39c12; color:#fff;"><i class="fas fa-chalkboard-teacher"></i></div>
+        <div class="skill-icon" style="background:#000; overflow:hidden;"><img src="nukelabs.png" alt="Nuke Labs"
+            style="width:48px; height:48px; object-fit:contain;"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║         EXPERIENCE SECTION               ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section id="experience" style="padding:120px 48px; background:var(--bg);">
+    <div style="max-width:800px; margin:0 auto;">
+
+      <h2 class="font-display reveal" style="font-size:clamp(48px, 10vw, 120px); margin-bottom:64px;">EXPERIENCE</h2>
+
+      <div style="position:relative;" id="timeline">
+        <!-- Timeline line -->
+        <div class="timeline-line"></div>
+
+        <!-- Items -->
+        <div class="timeline-item reveal" style="position:relative; margin-bottom:48px;">
+          <div class="timeline-node active"></div>
+          <span class="font-mono" style="font-size:13px; color:var(--text-subtle);">Jan 2025 – Present</span>
+          <h3 class="font-display" style="font-size:clamp(22px, 3vw, 32px); margin:6px 0 4px;">CHIEF TECHNOLOGY OFFICER
+            (CTO)</h3>
+          <p style="color:var(--text-muted); font-size:16px; margin-bottom:4px;">Nuke Labs · Kerala, India</p>
+          <div class="timeline-desc">
+            <p style="color:var(--text-muted); font-size:15px; line-height:1.6; padding-top:8px; max-width:500px;">
+              Lead the technical development of products and prototypes while working as an embedded systems engineer
+              and software developer. Responsible for system architecture, firmware development, and integrating
+              hardware with software platforms for scalable technology solutions.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" style="position:relative; margin-bottom:48px;">
+          <div class="timeline-node active"></div>
+          <span class="font-mono" style="font-size:13px; color:var(--text-subtle);">Jan 2025 – Present</span>
+          <h3 class="font-display" style="font-size:clamp(22px, 3vw, 32px); margin:6px 0 4px;">SECRETARY</h3>
+          <p style="color:var(--text-muted); font-size:16px; margin-bottom:4px;">IEEE Student Branch, Sree Buddha
+            College of Engineering</p>
+          <div class="timeline-desc">
+            <p style="color:var(--text-muted); font-size:15px; line-height:1.6; padding-top:8px; max-width:500px;">
+              Coordinate technical events, workshops, and community initiatives for the IEEE student branch. Manage
+              official communications, documentation, and collaboration across committees.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" style="position:relative; margin-bottom:48px;">
+          <div class="timeline-node active"></div>
+          <span class="font-mono" style="font-size:13px; color:var(--text-subtle);">Oct 2024 – Present</span>
+          <h3 class="font-display" style="font-size:clamp(22px, 3vw, 32px); margin:6px 0 4px;">ATL TINKERING LAB
+            INSTRUCTOR</h3>
+          <p style="color:var(--text-muted); font-size:16px; margin-bottom:4px;">Jawahar Navodaya Vidyalaya, Chennithala
+          </p>
+          <div class="timeline-desc">
+            <p style="color:var(--text-muted); font-size:15px; line-height:1.6; padding-top:8px; max-width:500px;">
+              Mentor school students in robotics, IoT, and design thinking through hands-on innovation sessions at the
+              Atal Tinkering Lab, guiding them in building prototypes and problem-solving projects.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" style="position:relative; margin-bottom:48px;">
+          <div class="timeline-node"></div>
+          <span class="font-mono" style="font-size:13px; color:var(--text-subtle);">Jan 2024 – Mar 2025</span>
+          <h3 class="font-display" style="font-size:clamp(22px, 3vw, 32px); margin:6px 0 4px;">PROGRAM COORDINATOR</h3>
+          <p style="color:var(--text-muted); font-size:16px; margin-bottom:4px;">IEEE Student Branch, Sree Buddha
+            College of Engineering</p>
+          <div class="timeline-desc">
+            <p style="color:var(--text-muted); font-size:15px; line-height:1.6; padding-top:8px; max-width:500px;">
+              Organized and managed technical programs, workshops, and student engagement activities while coordinating
+              with IEEE members and external speakers.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" style="position:relative; margin-bottom:48px;">
+          <div class="timeline-node"></div>
+          <span class="font-mono" style="font-size:13px; color:var(--text-subtle);">2023 – Present</span>
+          <h3 class="font-display" style="font-size:clamp(22px, 3vw, 32px); margin:6px 0 4px;">TEAM LEAD</h3>
+          <p style="color:var(--text-muted); font-size:16px; margin-bottom:4px;">Entrepreneurship Cell (E-Cell), Sree
+            Buddha College of Engineering</p>
+          <div class="timeline-desc">
+            <p style="color:var(--text-muted); font-size:15px; line-height:1.6; padding-top:8px; max-width:500px;">
+              Led a student team to promote entrepreneurship by organizing startup-focused events, workshops, and guest
+              lectures with industry professionals.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║         PROJECTS SECTION (3D CARDS)      ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <style>
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      padding: 48px;
+    }
+
+    .work-card {
+      position: relative;
+      background: linear-gradient(145deg, #161616, #0A0A0A);
+      border-radius: 24px;
+      padding: 24px;
+      padding-top: 120px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      overflow: visible;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      text-decoration: none;
+      display: block;
+    }
+
+    .work-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .work-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .work-card-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .work-card-img {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: -160px auto 20px;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.8));
+      z-index: 10;
+    }
+
+    .work-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      /* Removes black bg */
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .work-card:hover .work-card-img {
+      transform: translateY(-20px) scale(1.15);
+    }
+
+    .work-card-content {
+      position: relative;
+      z-index: 5;
+    }
+
+    .work-card-title {
+      font-family: 'Anton', sans-serif;
+      color: #FFF;
+      font-size: 26px;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .work-card-subtitle {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .work-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .work-card-tech {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #aaa;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .work-card-link {
+      color: #fff;
+      font-size: 16px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all 0.2s;
+    }
+
+    .work-card:hover .work-card-link {
+      background: #fff;
+      color: #000;
+      transform: rotate(-45deg);
+    }
+
+    /* Modal Styles */
+    #project-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    #project-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: #111;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      transform: scale(0.9) translateY(30px);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    }
+
+    #project-modal.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .modal-close:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .modal-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      padding: 48px;
+    }
+
+    .modal-img-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .modal-img {
+      width: 100%;
+      max-width: 300px;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+    }
+
+    .modal-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .modal-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 42px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .modal-desc {
+      font-size: 15px;
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .modal-links {
+      display: flex;
+      gap: 16px;
+      margin-top: auto;
+    }
+
+    .modal-btn {
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: #e0e0e0;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .modal-body {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+
+      .work-card {
+        padding-top: 100px;
+        margin-top: 60px;
+      }
+    }
+  </style>
+
+  <section id="projects" style="padding:120px 0; background:var(--dark);">
+    <div
+      style="padding:0 48px; margin-bottom: 80px; display:flex; align-items:flex-end; justify-content:space-between;">
+      <h2 class="font-display reveal" style="font-size:clamp(48px, 8vw, 100px); color: #fff;">SELECTED WORKS</h2>
+      <a href="https://github.com/ananthakrishnan754" target="_blank"
+        style="color:var(--text-subtle); text-decoration:none; font-size:14px; display:flex; align-items:center; gap:6px; transition:color 0.2s;"
+        onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-subtle)'">
+        View all projects <i class="fas fa-arrow-right" style="font-size:12px;"></i>
+      </a>
+    </div>
+
+    <div class="works-grid">
+
+      <!-- Card 1 -->
+      <a href="javascript:void(0)" class="work-card reveal" onclick="openModal('memorycare')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-img">
+          <img src=".gemini/antigravity/brain/904987f6-2753-4811-9e46-36749f4281a3/memorycare_glasses_1772989551983.png"
+            alt="MemoryCare">
+        </div>
+        <div class="work-card-content">
+          <h3 class="work-card-title">MemoryCare</h3>
+          <p class="work-card-subtitle">AI Spectacles for Alzheimer's</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">Python</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.1s;"
+        onclick="openModal('drone')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-img">
+          <img src=".gemini/antigravity/brain/904987f6-2753-4811-9e46-36749f4281a3/warehouse_drone_1772989288336.png"
+            alt="Warehouse Drone">
+        </div>
+        <div class="work-card-content">
+          <h3 class="work-card-title">Warehouse Drone</h3>
+          <p class="work-card-subtitle">ROS2 Simulated Autonomy</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">Python</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.2s;"
+        onclick="openModal('robotarm')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-img">
+          <img src=".gemini/antigravity/brain/904987f6-2753-4811-9e46-36749f4281a3/robot_arm_1772989766095.png"
+            alt="Robot Arm">
+        </div>
+        <div class="work-card-content">
+          <h3 class="work-card-title">6-DOF Robot Arm</h3>
+          <p class="work-card-subtitle">Inverse Kinematics</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">Python</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="javascript:void(0)" class="work-card reveal" onclick="openModal('stm32')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-img">
+          <img src=".gemini/antigravity/brain/904987f6-2753-4811-9e46-36749f4281a3/stm32_board_1772990723310.png"
+            alt="STM32 Drivers">
+        </div>
+        <div class="work-card-content">
+          <h3 class="work-card-title">STM32 HAL Drivers</h3>
+          <p class="work-card-subtitle">Custom Firmware</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">C</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.1s;"
+        onclick="openModal('portfolio')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-img">
+          <img src=".gemini/antigravity/brain/904987f6-2753-4811-9e46-36749f4281a3/portfolio_web_1772991452171.png"
+            alt="Portfolio Terminal">
+        </div>
+        <div class="work-card-content">
+          <h3 class="work-card-title">Retro Portfolio</h3>
+          <p class="work-card-subtitle">Web Frontend</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">HTML/CSS</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Projects Modal -->
+  <div id="project-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+      <div class="modal-body">
+        <div class="modal-img-container">
+          <img id="modalImg" src="" alt="Project" class="modal-img">
+        </div>
+        <div class="modal-info">
+          <h2 id="modalTitle" class="modal-title">Project Title</h2>
+          <p id="modalTech" class="work-card-tech" style="display:inline-block; width:max-content; margin-bottom:16px;">
+            Python</p>
+          <p id="modalDesc" class="modal-desc">Project description goes here.</p>
+          <div class="modal-links">
+            <a id="modalGithub" href="#" target="_blank" class="modal-btn btn-primary">
+              <i class="fab fa-github"></i> View GitHub
+            </a>
+            <a id="modalLinkedin" href="https://linkedin.com/in/ananthakrishnan754" target="_blank"
+              class="modal-btn btn-secondary">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const projectsData = {
+      'memorycare': {
+        title: 'MemoryCare',
+        tech: 'Python',
+        desc: 'AI spectacles for Alzheimer\'s patients utilizing ESP32-CAM, OpenCV, and deep learning for real-time facial recognition and assistance. Helps patients identify loved ones and navigate their environments.',
+        img: '.gemini/antigravity/brain/904987f6-2753-4811-9e46-36749f4281a3/memorycare_glasses_1772989551983.png',
+        github: 'https://github.com/ananthakrishnan754/memorycare-ai-spectacles'
+      },
+      'drone': {
+        title: 'Warehouse Drone',
+        tech: 'Python',
+        desc: 'Built for the e-Yantra 2024-25 competition. Simulated warehouse drone navigation and 2D mapping using ROS2, Gazebo, and OpenCV for autonomous flight and object detection.',
+        img: '.gemini/antigravity/brain/904987f6-2753-4811-9e46-36749f4281a3/warehouse_drone_1772989288336.png',
+        github: 'https://github.com/ananthakrishnan754/warehouse-drone-eyantra'
+      },
+      'robotarm': {
+        title: '6-DOF Robot Arm',
+        tech: 'Python',
+        desc: 'Implementation of forward and inverse kinematics for a 6-Degree of Freedom robotic manipulator arm. Uses ROS2 and Python to compute precise joint angles for target end-effector positions.',
+        img: '.gemini/antigravity/brain/904987f6-2753-4811-9e46-36749f4281a3/robot_arm_1772989766095.png',
+        github: 'https://github.com/ananthakrishnan754/robot-arm-control'
+      },
+      'stm32': {
+        title: 'STM32 HAL Drivers',
+        tech: 'C',
+        desc: 'Custom Hardware Abstraction Layer (HAL) drivers developed for STM32 microcontrollers. Demonstrates low-level embedded software proficiency, bare-metal programming, and register-level configuration.',
+        img: '.gemini/antigravity/brain/904987f6-2753-4811-9e46-36749f4281a3/stm32_board_1772990723310.png',
+        github: 'https://github.com/ananthakrishnan754/stm32-hal-drivers'
+      },
+      'portfolio': {
+        title: 'Retro Portfolio',
+        tech: 'HTML/CSS/JS',
+        desc: 'Personal portfolio website featuring a clean monochrome design, glassmorphism UI elements, smooth GSAP animations, and a retro interactive terminal interface to showcase my embedded & robotics skills.',
+        img: '.gemini/antigravity/brain/904987f6-2753-4811-9e46-36749f4281a3/portfolio_web_1772991452171.png',
+        github: 'https://github.com/ananthakrishnan754/portfolio'
+      }
+    };
+
+    function openModal(id) {
+      const data = projectsData[id];
+      document.getElementById('modalTitle').innerText = data.title;
+      document.getElementById('modalTech').innerText = data.tech;
+      document.getElementById('modalDesc').innerText = data.desc;
+      document.getElementById('modalImg').src = data.img;
+
+      let ghLink = document.getElementById('modalGithub');
+      if (data.github) {
+        ghLink.style.display = 'flex';
+        ghLink.href = data.github;
+      } else {
+        ghLink.style.display = 'none';
+      }
+
+      document.getElementById('project-modal').classList.add('active');
+      document.body.style.overflow = 'hidden'; // prevent bg scrolling
+    }
+
+    function closeModal() {
+      document.getElementById('project-modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on click outside
+    document.getElementById('project-modal').addEventListener('click', function (e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+  </script>
+
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║         TERMINAL SECTION                 ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section id="terminal"
+    style="min-height:100vh; background:#0a0a0a; padding:80px 24px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrix-canvas" style="position:absolute; inset:0; width:100%; height:100%; z-index:1;"></canvas>
+    <!-- Terminal Window -->
+    <div id="terminal-window" style="max-width:900px; width:100%; z-index:10; opacity:0;">
+      <!-- Window Chrome -->
+      <div
+        style="background:#1a1a1a; border-radius:12px 12px 0 0; padding:12px 16px; display:flex; align-items:center; gap:8px; border:1px solid #333; border-bottom:none;">
+        <span style="width:12px; height:12px; border-radius:50%; background:#ff5f56;"></span>
+        <span style="width:12px; height:12px; border-radius:50%; background:#ffbd2e;"></span>
+        <span style="width:12px; height:12px; border-radius:50%; background:#27c93f;"></span>
+        <span
+          style="flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:12px; color:#666;">visitor@ananthakrishnan.dev
+          — bash</span>
+      </div>
+      <!-- Terminal Body -->
+      <div id="terminal-body"
+        style="background:#0d0d0d; border:1px solid #333; border-top:none; border-radius:0 0 12px 12px; padding:20px; min-height:400px; max-height:70vh; overflow-y:auto; position:relative;">
+        <div id="terminal-output"
+          style="font-family:'JetBrains Mono',monospace; font-size:14px; line-height:1.8; color:#00ff41; white-space:pre-wrap; word-break:break-word;">
+        </div>
+        <div id="terminal-input-line"
+          style="display:flex; align-items:center; font-family:'JetBrains Mono',monospace; font-size:14px; margin-top:4px;">
+          <span style="color:#00ff41; white-space:nowrap;">visitor@portfolio:~$&nbsp;</span>
+          <input id="terminal-input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off"
+            spellcheck="false"
+            style="flex:1; background:transparent; border:none; outline:none; color:#fff; font-family:'JetBrains Mono',monospace; font-size:14px; caret-color:#00ff41;">
+        </div>
+        <canvas id="game-canvas" style="display:none; margin:10px auto; border:1px solid #333;"></canvas>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║         CONNECT SECTION (NEW)            ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section id="contact" style="padding:120px 48px; background:var(--bg); color:#000;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <!-- Title -->
+      <h2 class="font-display reveal" style="font-size:clamp(48px, 8vw, 80px); line-height:0.9; margin-bottom:16px;">
+        CONNECT
+      </h2>
+      <div style="width:80px; height:4px; background:#f26522; margin-bottom:64px;" class="reveal"></div>
+
+      <!-- Grid for cards -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:32px;" class="reveal">
+
+        <!-- ═══════════════ LINKEDIN CARD ═══════════════ -->
+        <div class="contact-card">
+          <div class="card-header" style="background:#fff;">
+            <div class="window-controls">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <a href="https://linkedin.com/in/ananthakrishnan754" target="_blank" class="dot green maximize-btn"
+                title="Open LinkedIn"></a>
+            </div>
+            <div class="card-title" style="color:#0a66c2;"><i class="fab fa-linkedin" style="margin-right:4px;"></i>
+              LINKEDIN</div>
+          </div>
+          <div class="card-content scrollable" style="background:#f4f2ee; padding:0;">
+            <!-- Banner -->
+            <div style="height:72px; background:linear-gradient(to right, #f5d0a9, #e8943a); position:relative;">
+              <div style="position:absolute; bottom:-36px; left:16px;">
+                <img src="yoaur-photo.jpg" alt="Profile"
+                  style="width:72px; height:72px; border-radius:50%; border:3px solid #fff; object-fit:cover;">
+              </div>
+            </div>
+            <div style="background:#fff; padding:44px 16px 16px; margin-bottom:8px;">
+              <h3 style="font-size:17px; font-weight:700; color:#000;">Ananthakrishnan S <span
+                  style="color:#0a66c2; font-size:12px;">✓</span></h3>
+              <p style="font-size:12px; color:#666; margin:2px 0 4px;">ECE Undergraduate | SI Robotics & Embedded
+                Systems | CTO at Nuke Labs | IEEE SB SBCE</p>
+              <p style="font-size:11px; color:#999;">Kerala, India · <a href="#"
+                  style="color:#0a66c2; text-decoration:none; font-size:11px;">500+ connections</a></p>
+              <div style="display:flex; gap:8px; margin-top:12px;">
+                <span
+                  style="background:#0a66c2; color:#fff; padding:4px 16px; border-radius:100px; font-size:11px; font-weight:600;">Open
+                  to</span>
+                <span
+                  style="border:1px solid #0a66c2; color:#0a66c2; padding:4px 16px; border-radius:100px; font-size:11px; font-weight:600;">Add
+                  section</span>
+                <span
+                  style="border:1px solid #666; color:#666; padding:4px 16px; border-radius:100px; font-size:11px; font-weight:600;">More</span>
+              </div>
+            </div>
+            <!-- Experience -->
+            <div style="background:#fff; padding:16px; margin-bottom:8px;">
+              <h4 style="font-size:15px; font-weight:700; margin-bottom:12px;">Experience</h4>
+              <div style="display:flex; gap:10px; margin-bottom:14px;">
+                <div
+                  style="width:36px; height:36px; background:#f0f0f0; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">
+                  🏢</div>
+                <div>
+                  <p style="font-size:13px; font-weight:600;">Chief Technology Officer</p>
+                  <p style="font-size:11px; color:#666;">Nuke Labs · Full-time</p>
+                  <p style="font-size:11px; color:#999;">Jan 2025 – Present</p>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px; margin-bottom:14px;">
+                <div
+                  style="width:36px; height:36px; background:#f0f0f0; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">
+                  ⚡</div>
+                <div>
+                  <p style="font-size:13px; font-weight:600;">Secretary, IEEE Student Branch</p>
+                  <p style="font-size:11px; color:#666;">IEEE SB SBCE</p>
+                  <p style="font-size:11px; color:#999;">Jan 2025 – Present</p>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px; margin-bottom:14px;">
+                <div
+                  style="width:36px; height:36px; background:#f0f0f0; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">
+                  🎓</div>
+                <div>
+                  <p style="font-size:13px; font-weight:600;">ATL Lab Instructor</p>
+                  <p style="font-size:11px; color:#666;">Jawahar Navodaya Vidyalaya</p>
+                  <p style="font-size:11px; color:#999;">Oct 2024 – Present</p>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <div
+                  style="width:36px; height:36px; background:#f0f0f0; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">
+                  🤖</div>
+                <div>
+                  <p style="font-size:13px; font-weight:600;">Embedded Systems Freelancer</p>
+                  <p style="font-size:11px; color:#666;">Fiverr</p>
+                  <p style="font-size:11px; color:#999;">2023 – Present</p>
+                </div>
+              </div>
+            </div>
+            <!-- Education -->
+            <div style="background:#fff; padding:16px; margin-bottom:8px;">
+              <h4 style="font-size:15px; font-weight:700; margin-bottom:12px;">Education</h4>
+              <div style="display:flex; gap:10px; margin-bottom:14px;">
+                <div
+                  style="width:36px; height:36px; background:#f0f0f0; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">
+                  🏫</div>
+                <div>
+                  <p style="font-size:13px; font-weight:600;">Sree Buddha College of Engineering</p>
+                  <p style="font-size:11px; color:#666;">B.Tech, Electronics & Communication</p>
+                  <p style="font-size:11px; color:#999;">2022 – 2026</p>
+                </div>
+              </div>
+            </div>
+            <!-- Skills -->
+            <div style="background:#fff; padding:16px;">
+              <h4 style="font-size:15px; font-weight:700; margin-bottom:12px;">Skills</h4>
+              <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                <span
+                  style="background:#e8f0fe; color:#0a66c2; padding:4px 10px; border-radius:100px; font-size:10px; font-weight:500;">Embedded
+                  Systems</span>
+                <span
+                  style="background:#e8f0fe; color:#0a66c2; padding:4px 10px; border-radius:100px; font-size:10px; font-weight:500;">ROS2</span>
+                <span
+                  style="background:#e8f0fe; color:#0a66c2; padding:4px 10px; border-radius:100px; font-size:10px; font-weight:500;">Python</span>
+                <span
+                  style="background:#e8f0fe; color:#0a66c2; padding:4px 10px; border-radius:100px; font-size:10px; font-weight:500;">Computer
+                  Vision</span>
+                <span
+                  style="background:#e8f0fe; color:#0a66c2; padding:4px 10px; border-radius:100px; font-size:10px; font-weight:500;">PID
+                  Control</span>
+                <span
+                  style="background:#e8f0fe; color:#0a66c2; padding:4px 10px; border-radius:100px; font-size:10px; font-weight:500;">C/C++</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://linkedin.com/in/ananthakrishnan754" target="_blank" class="card-btn">View Profile
+              &rarr;</a>
+          </div>
+        </div>
+
+        <!-- ═══════════════ GITHUB CARD ═══════════════ -->
+        <div class="contact-card">
+          <div class="card-header" style="background:#0d1117;">
+            <div class="window-controls">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <a href="https://github.com/ananthakrishnan754" target="_blank" class="dot green maximize-btn"
+                title="Open GitHub"></a>
+            </div>
+            <div class="card-title" style="color:#8b949e;"><i class="fab fa-github" style="margin-right:4px;"></i>
+              GITHUB</div>
+          </div>
+          <div class="card-content scrollable" style="background:#0d1117; padding:16px; color:#c9d1d9;">
+            <!-- Profile header -->
+            <div style="display:flex; gap:16px; margin-bottom:20px; align-items:center;">
+              <img src="your-photo.jpg" alt="GitHub"
+                style="width:64px; height:64px; border-radius:50%; border:1px solid #30363d; object-fit:cover;">
+              <div>
+                <h3 style="font-size:18px; font-weight:700; color:#f0f6fc;">ananthakrishnan754</h3>
+                <p style="font-size:12px; color:#8b949e;">Ananthakrishnan S</p>
+                <p style="font-size:11px; color:#8b949e; margin-top:4px;"><i class="fas fa-map-marker-alt"
+                    style="margin-right:4px;"></i>Kerala, India</p>
+              </div>
+            </div>
+            <!-- Stats -->
+            <div style="display:flex; gap:16px; margin-bottom:16px; font-size:12px; color:#8b949e;">
+              <span><i class="fas fa-users" style="margin-right:4px;"></i><b style="color:#f0f6fc;">150</b>
+                followers</span>
+              <span><b style="color:#f0f6fc;">42</b> following</span>
+            </div>
+            <!-- Pinned repos -->
+            <p style="font-size:12px; color:#8b949e; font-weight:600; margin-bottom:10px;">Pinned repositories</p>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="border:1px solid #30363d; border-radius:8px; padding:12px; background:#161b22;">
+                <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                  <i class="fas fa-book" style="color:#8b949e; font-size:12px;"></i>
+                  <span style="color:#58a6ff; font-size:13px; font-weight:600;">robot-arm-control</span>
+                </div>
+                <p style="font-size:11px; color:#8b949e; margin-bottom:8px;">6-DOF robotic arm inverse kinematics with
+                  ROS2 Python</p>
+                <div style="display:flex; align-items:center; gap:12px; font-size:11px;">
+                  <span><span
+                      style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#3572A5; margin-right:4px;"></span>Python</span>
+                  <span><i class="far fa-star" style="margin-right:2px;"></i>12</span>
+                  <span><i class="fas fa-code-branch" style="margin-right:2px;"></i>3</span>
+                </div>
+              </div>
+              <div style="border:1px solid #30363d; border-radius:8px; padding:12px; background:#161b22;">
+                <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                  <i class="fas fa-book" style="color:#8b949e; font-size:12px;"></i>
+                  <span style="color:#58a6ff; font-size:13px; font-weight:600;">warehouse-drone-eyantra</span>
+                </div>
+                <p style="font-size:11px; color:#8b949e; margin-bottom:8px;">ROS2 Gazebo simulated warehouse drone -
+                  eYantra 2024-25</p>
+                <div style="display:flex; align-items:center; gap:12px; font-size:11px;">
+                  <span><span
+                      style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#3572A5; margin-right:4px;"></span>Python</span>
+                  <span><i class="far fa-star" style="margin-right:2px;"></i>8</span>
+                  <span><i class="fas fa-code-branch" style="margin-right:2px;"></i>2</span>
+                </div>
+              </div>
+              <div style="border:1px solid #30363d; border-radius:8px; padding:12px; background:#161b22;">
+                <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                  <i class="fas fa-book" style="color:#8b949e; font-size:12px;"></i>
+                  <span style="color:#58a6ff; font-size:13px; font-weight:600;">stm32-hal-drivers</span>
+                </div>
+                <p style="font-size:11px; color:#8b949e; margin-bottom:8px;">Custom HAL drivers for STM32
+                  microcontrollers</p>
+                <div style="display:flex; align-items:center; gap:12px; font-size:11px;">
+                  <span><span
+                      style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#555555; margin-right:4px;"></span>C</span>
+                  <span><i class="far fa-star" style="margin-right:2px;"></i>8</span>
+                  <span><i class="fas fa-code-branch" style="margin-right:2px;"></i>1</span>
+                </div>
+              </div>
+              <div style="border:1px solid #30363d; border-radius:8px; padding:12px; background:#161b22;">
+                <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                  <i class="fas fa-book" style="color:#8b949e; font-size:12px;"></i>
+                  <span style="color:#58a6ff; font-size:13px; font-weight:600;">memorycare-ai-spectacles</span>
+                </div>
+                <p style="font-size:11px; color:#8b949e; margin-bottom:8px;">AI spectacles for Alzheimer's patients -
+                  ESP32-CAM + OpenCV</p>
+                <div style="display:flex; align-items:center; gap:12px; font-size:11px;">
+                  <span><span
+                      style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#3572A5; margin-right:4px;"></span>Python</span>
+                  <span><i class="far fa-star" style="margin-right:2px;"></i>24</span>
+                  <span><i class="fas fa-code-branch" style="margin-right:2px;"></i>5</span>
+                </div>
+              </div>
+              <div style="border:1px solid #30363d; border-radius:8px; padding:12px; background:#161b22;">
+                <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                  <i class="fas fa-book" style="color:#8b949e; font-size:12px;"></i>
+                  <span style="color:#58a6ff; font-size:13px; font-weight:600;">portfolio</span>
+                </div>
+                <p style="font-size:11px; color:#8b949e; margin-bottom:8px;">Personal portfolio website - monochrome
+                  design</p>
+                <div style="display:flex; align-items:center; gap:12px; font-size:11px;">
+                  <span><span
+                      style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#e34c26; margin-right:4px;"></span>HTML</span>
+                  <span><i class="far fa-star" style="margin-right:2px;"></i>3</span>
+                  <span><i class="fas fa-code-branch" style="margin-right:2px;"></i>1</span>
+                </div>
+              </div>
+            </div>
+            <!-- Contribution Graph Placeholder -->
+            <div
+              style="margin-top:20px; border:1px solid #30363d; border-radius:8px; padding:12px; background:#161b22;">
+              <p style="font-size:12px; color:#8b949e; margin-bottom:8px;">Contribution activity</p>
+              <div style="display:flex; gap:2px; flex-wrap:wrap;">
+                <script>/* placeholder squares rendered below */</script>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(26, 1fr); gap:2px;" id="gh-contrib-grid"></div>
+            </div>
+          </div>
+          <div class="card-footer" style="background:#0d1117; border-top:1px solid #30363d;">
+            <a href="https://github.com/ananthakrishnan754" target="_blank" class="card-btn"
+              style="border-color:#30363d; color:#c9d1d9;">View GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <!-- ═══════════════ INSTAGRAM CARD ═══════════════ -->
+        <div class="contact-card">
+          <div class="card-header" style="background:#000; border-bottom:1px solid #262626;">
+            <div class="window-controls">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <a href="https://instagram.com/secretkrixx" target="_blank" class="dot green maximize-btn"
+                title="Open Instagram"></a>
+            </div>
+            <div class="card-title" style="color:#fafafa;"><i class="fab fa-instagram" style="margin-right:4px;"></i>
+              INSTAGRAM</div>
+          </div>
+          <div class="card-content scrollable" style="background:#000; padding:0; color:#fafafa;">
+            <!-- Profile header -->
+            <div style="padding:16px; display:flex; gap:20px; align-items:center;">
+              <div class="insta-ring" style="flex-shrink:0;">
+                <img src="yoaur-photo.jpg" alt="Insta"
+                  style="width:64px; height:64px; border-radius:50%; border:2px solid #000; object-fit:cover; display:block;">
+              </div>
+              <div style="flex:1;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                  <h3 style="font-size:16px; font-weight:400; color:#fafafa;">secretkrixx</h3>
+                  <span style="color:#0095f6; font-size:12px;"><i class="fas fa-check-circle"></i></span>
+                </div>
+                <p style="font-size:12px; color:#a8a8a8; margin-bottom:4px;">Ananthakrishnan🦋</p>
+                <div style="display:flex; gap:20px; font-size:13px; color:#fafafa;">
+                  <span><b>69</b> <span style="color:#a8a8a8;">posts</span></span>
+                  <span><b>231</b> <span style="color:#a8a8a8;">followers</span></span>
+                  <span><b>233</b> <span style="color:#a8a8a8;">following</span></span>
+                </div>
+              </div>
+            </div>
+            <!-- Story Highlight -->
+            <div style="padding:0 16px 12px; display:flex; gap:16px; overflow-x:auto;">
+              <div style="text-align:center;">
+                <div
+                  style="width:48px; height:48px; border-radius:50%; border:1px solid #363636; display:flex; align-items:center; justify-content:center; font-size:24px; background:#1a1a1a;">
+                  +</div>
+                <p style="font-size:10px; color:#a8a8a8; margin-top:4px;">New</p>
+              </div>
+            </div>
+            <!-- Tab bar -->
+            <div style="display:flex; border-top:1px solid #262626; border-bottom:1px solid #262626;">
+              <div style="flex:1; text-align:center; padding:10px 0; border-bottom:1px solid #fafafa;"><i
+                  class="fas fa-th" style="font-size:14px;"></i></div>
+              <div style="flex:1; text-align:center; padding:10px 0; color:#8e8e8e;"><i class="fas fa-play"
+                  style="font-size:14px;"></i></div>
+              <div style="flex:1; text-align:center; padding:10px 0; color:#8e8e8e;"><i class="fas fa-bookmark"
+                  style="font-size:14px;"></i></div>
+              <div style="flex:1; text-align:center; padding:10px 0; color:#8e8e8e;"><i class="fas fa-user-tag"
+                  style="font-size:14px;"></i></div>
+            </div>
+            <!-- Photo grid (3-column like real Instagram) -->
+            <div>
+              <img src="instagram-full.png" alt="Instagram Feed" style="width:100%; display:block;">
+            </div>
+          </div>
+          <div class="card-footer" style="background:#000; border-top:1px solid #262626;">
+            <a href="https://instagram.com/secretkrixx" target="_blank" class="card-btn"
+              style="border-color:#363636; color:#fafafa;">View Instagram &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║           FOOTER                         ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <footer style="background:var(--bg); padding:120px 48px 48px; overflow:hidden;">
+    <div style="max-width:1400px; margin:0 auto;">
+
+      <!-- Large Name -->
+      <h2 class="font-display"
+        style="font-size:clamp(48px, 15vw, 220px); line-height:0.85; margin-bottom:64px; white-space:nowrap;">
+        ANANTHAKRISHNAN S
+      </h2>
+
+      <!-- Social Links -->
+      <div style="display:flex; flex-wrap:wrap; gap:32px; margin-bottom:64px;">
+        <a href="https://github.com/ananthakrishnan754" target="_blank"
+          style="font-size:16px; color:var(--text-muted); text-decoration:none; transition:color 0.2s;"
+          onmouseover="this.style.color='#000'" onmouseout="this.style.color='var(--text-muted)'">GitHub</a>
+        <a href="https://linkedin.com/in/ananthakrishnan754" target="_blank"
+          style="font-size:16px; color:var(--text-muted); text-decoration:none; transition:color 0.2s;"
+          onmouseover="this.style.color='#000'" onmouseout="this.style.color='var(--text-muted)'">LinkedIn</a>
+        <a href="https://port2-five-eosin.vercel.app" target="_blank"
+          style="font-size:16px; color:var(--text-muted); text-decoration:none; transition:color 0.2s;"
+          onmouseover="this.style.color='#000'" onmouseout="this.style.color='var(--text-muted)'">Portfolio</a>
+        <a href="https://fiverr.com/s/2KNp95q" target="_blank"
+          style="font-size:16px; color:var(--text-muted); text-decoration:none; transition:color 0.2s;"
+          onmouseover="this.style.color='#000'" onmouseout="this.style.color='var(--text-muted)'">Fiverr</a>
+        <a href="mailto:krishnananantha754@gmail.com"
+          style="font-size:16px; color:var(--text-muted); text-decoration:none; transition:color 0.2s;"
+          onmouseover="this.style.color='#000'" onmouseout="this.style.color='var(--text-muted)'">Email</a>
+      </div>
+
+      <!-- Copyright -->
+      <p style="font-size:13px; color:var(--text-subtle);">
+        © 2025 Ananthakrishnan S. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║           SCRIPTS                        ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <script>
+    // ==========================================
+    // SCROLL REVEAL
+    // ==========================================
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+
+    // ==========================================
+    // HERO IMAGE PARALLAX
+    // ==========================================
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to('#hero-image img', {
+      y: -60,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0.5,
+      }
+    });
+
+    // Hero entrance
+    gsap.from('#hero-image', {
+      opacity: 0,
+      scale: 0.95,
+      duration: 1,
+      ease: 'power2.out',
+      delay: 0.3
+    });
+
+    gsap.from('.hero-side-text', {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: 'power2.out',
+      delay: 0.6
+    });
+
+
+    // ==========================================
+    // PROJECTS SCROLL PROGRESS
+    // ==========================================
+    const scrollContainer = document.getElementById('projects-scroll');
+    const progressBar = document.getElementById('scroll-progress');
+
+    if (scrollContainer && progressBar) {
+      scrollContainer.addEventListener('scroll', () => {
+        const scrollLeft = scrollContainer.scrollLeft;
+        const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        const progress = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+        progressBar.style.width = Math.max(progress, 5) + '%';
+      });
+    }
+
+
+    // ==========================================
+    // INTERACTIVE TERMINAL (loaded from terminal.js)
+    // ==========================================
+
+
+    // ==========================================
+    // NAV NAME VISIBILITY (show on wider screens)
+    // ==========================================
+    const navName = document.querySelector('.nav-name');
+    if (window.innerWidth >= 768 && navName) {
+      navName.style.display = 'inline';
+    }
+
+    // Nav entrance animation
+    gsap.from('nav', {
+      y: -80,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      delay: 0.2
+    });
+
+
+    // ==========================================
+    // RESPONSIVE: About grid single column on mobile
+    // ==========================================
+    const aboutGrid = document.querySelector('#about > div > div:last-child');
+    if (window.innerWidth < 768 && aboutGrid) {
+      aboutGrid.style.gridTemplateColumns = '1fr';
+    }
+
+
+    // ==========================================
+    // WAVY SKILLS ANIMATION
+    // ==========================================
+    (function initWavySkills() {
+      const container = document.getElementById('wavy-skills');
+      if (!container) return;
+
+      const icons = container.querySelectorAll('.skill-icon');
+      const totalOriginal = icons.length / 2; // half are duplicates
+
+      // Horizontal infinite scroll
+      gsap.to(container, {
+        x: -(totalOriginal * (64 + 24)), // icon width + gap
+        duration: 30,
+        ease: 'none',
+        repeat: -1,
+      });
+
+      // Individual sine-wave bob for each icon
+      icons.forEach((icon, i) => {
+        gsap.to(icon, {
+          y: 15,
+          duration: 0.8 + (i % 5) * 0.15,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+          delay: (i % totalOriginal) * 0.1,
+        });
+      });
+    })();
+
+
+    // ==========================================
+    // ABOUT SECTION — SCALE REVEAL ON SCROLL
+    // ==========================================
+    (function initAboutScaleReveal() {
+      const aboutSection = document.getElementById('about');
+      if (!aboutSection) return;
+
+      // Wrap about in a container for the scale effect
+      aboutSection.style.transformOrigin = 'center top';
+      aboutSection.style.borderRadius = '24px';
+      aboutSection.style.overflow = 'hidden';
+
+      gsap.fromTo(aboutSection, {
+        scale: 0.85,
+        borderRadius: '24px',
+        opacity: 0.8,
+      }, {
+        scale: 1,
+        borderRadius: '0px',
+        opacity: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: aboutSection,
+          start: 'top 90%',
+          end: 'top 20%',
+          scrub: 0.8,
+        }
+      });
+    })();
+
+
+    // ==========================================
+    // MACOS WINDOW INTERACTIONS — DOCK
+    // ==========================================
+    (function initMacOSWindows() {
+
+      // Create dock bar at the bottom
+      let dock = document.getElementById('mini-dock');
+      if (!dock) {
+        dock = document.createElement('div');
+        dock.id = 'mini-dock';
+        dock.style.cssText = `
+          position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+          display: flex; gap: 12px; padding: 8px 20px;
+          background: rgba(255,255,255,0.15); backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(255,255,255,0.2); border-radius: 16px;
+          z-index: 200; opacity: 0; pointer-events: none;
+          transition: opacity 0.3s ease;
+        `;
+        document.body.appendChild(dock);
+      }
+
+      function showDock() {
+        dock.style.opacity = '1';
+        dock.style.pointerEvents = 'auto';
+      }
+      function hideDock() {
+        if (dock.children.length === 0) {
+          dock.style.opacity = '0';
+          dock.style.pointerEvents = 'none';
+        }
+      }
+
+      // ---- MINIMIZE (YELLOW DOT) — Genie/Scale Effect ----
+      document.querySelectorAll('.contact-card').forEach(card => {
+        const yellowDot = card.querySelector('.dot.yellow');
+        if (!yellowDot) return;
+
+        yellowDot.style.cursor = 'pointer';
+        yellowDot.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (card.dataset.minimized === 'true') return;
+          card.dataset.minimized = 'true';
+
+          const title = card.querySelector('.card-title')?.textContent || 'App';
+          const rect = card.getBoundingClientRect();
+
+          // Save original position
+          card.dataset.origWidth = card.offsetWidth + 'px';
+          card.dataset.origHeight = card.offsetHeight + 'px';
+
+          // Genie warp animation
+          gsap.to(card, {
+            scaleX: 0.1,
+            scaleY: 0.05,
+            y: window.innerHeight - rect.top - 40,
+            x: (window.innerWidth / 2) - rect.left - (rect.width / 2),
+            opacity: 0,
+            borderRadius: '50%',
+            duration: 0.6,
+            ease: 'power3.in',
+            onComplete: () => {
+              card.style.display = 'none';
+
+              // Add dock icon
+              const dockIcon = document.createElement('div');
+              dockIcon.style.cssText = `
+                width: 40px; height: 40px; border-radius: 10px;
+                background: rgba(255,255,255,0.2); display: flex;
+                align-items: center; justify-content: center;
+                font-size: 11px; font-weight: 700; color: #fff;
+                cursor: pointer; transition: transform 0.2s;
+              `;
+              dockIcon.textContent = title.charAt(0);
+              dockIcon.title = 'Restore ' + title;
+              dockIcon.addEventListener('mouseenter', () => { dockIcon.style.transform = 'scale(1.3)'; });
+              dockIcon.addEventListener('mouseleave', () => { dockIcon.style.transform = 'scale(1)'; });
+              dockIcon.addEventListener('click', () => {
+                // Restore card
+                card.style.display = 'flex';
+                gsap.to(card, {
+                  scaleX: 1,
+                  scaleY: 1,
+                  y: 0,
+                  x: 0,
+                  opacity: 1,
+                  borderRadius: '16px',
+                  duration: 0.5,
+                  ease: 'power3.out',
+                  onComplete: () => {
+                    card.dataset.minimized = 'false';
+                  }
+                });
+                dockIcon.remove();
+                hideDock();
+              });
+
+              dock.appendChild(dockIcon);
+              showDock();
+            }
+          });
+        });
+      });
+
+
+      // ---- CLOSE (RED DOT) — Particle Disintegration ----
+      document.querySelectorAll('.contact-card').forEach(card => {
+        const redDot = card.querySelector('.dot.red');
+        if (!redDot) return;
+
+        redDot.style.cursor = 'pointer';
+        redDot.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          const rect = card.getBoundingClientRect();
+
+          // Create canvas overlay for disintegration
+          const canvas = document.createElement('canvas');
+          canvas.width = rect.width * 2;
+          canvas.height = rect.height * 2;
+          canvas.style.cssText = `
+            position: fixed; top: ${rect.top}px; left: ${rect.left}px;
+            width: ${rect.width}px; height: ${rect.height}px;
+            z-index: 300; pointer-events: none;
+          `;
+          document.body.appendChild(canvas);
+          const ctx = canvas.getContext('2d');
+          const scale = 2;
+
+          // Generate particles from card area
+          const particles = [];
+          const particleCount = 120;
+          for (let i = 0; i < particleCount; i++) {
+            particles.push({
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              vx: (Math.random() - 0.5) * 12,
+              vy: (Math.random() - 0.5) * 12 - 4,
+              size: Math.random() * 4 + 1,
+              alpha: 1,
+              color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+            });
+          }
+
+          // Hide original card immediately
+          gsap.to(card, {
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.15,
+            onComplete: () => { card.style.display = 'none'; }
+          });
+
+          // Animate particles
+          let frame = 0;
+          function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let alive = false;
+            particles.forEach(p => {
+              p.x += p.vx;
+              p.y += p.vy;
+              p.vy += 0.15; // gravity
+              p.alpha -= 0.015;
+              if (p.alpha > 0) {
+                alive = true;
+                ctx.globalAlpha = Math.max(p.alpha, 0);
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * scale, 0, Math.PI * 2);
+                ctx.fill();
+              }
+            });
+            frame++;
+            if (alive && frame < 120) {
+              requestAnimationFrame(animateParticles);
+            } else {
+              canvas.remove();
+            }
+          }
+          requestAnimationFrame(animateParticles);
+        });
+      });
+
+    })();
+
+  </script>
+
+  <!-- Interactive Terminal Engine -->
+  <script src="terminal.js"></script>
+
+
+</body>
+
+</html>
