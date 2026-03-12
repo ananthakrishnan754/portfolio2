@@ -99,8 +99,7 @@
         }
         if (e.key === 'Enter') {
             const cmd = termInput.value.trim(); termInput.value = '';
-            appendHTML('<div>' + P + '<span style="color:#fff">' + esc(cmd) + '</span></div>');
-            if (cmd) { cmdHistory.push(cmd); historyIdx = cmdHistory.length; processCommand(cmd); }
+            runCommandStr(cmd);
         } else if (e.key === 'ArrowUp') {
             e.preventDefault();
             if (historyIdx > 0) { historyIdx--; termInput.value = cmdHistory[historyIdx]; }
@@ -110,7 +109,28 @@
             else { historyIdx = cmdHistory.length; termInput.value = ''; }
         }
     });
-    termBody.addEventListener('click', () => termInput.focus());
+
+    function runCommandStr(cmd) {
+        appendHTML('<div>' + P + '<span style="color:#fff">' + esc(cmd) + '</span></div>');
+        if (cmd) { cmdHistory.push(cmd); historyIdx = cmdHistory.length; processCommand(cmd); }
+    }
+
+    window.runMobileCmd = function (cmd) {
+        runCommandStr(cmd);
+    };
+
+    window.gbBtn = function (key) {
+        if (snakeState.keyHandler) {
+            snakeState.keyHandler({ key: key, preventDefault: () => { } });
+        }
+        if (key === 'Escape' && currentGame === 'snake') {
+            stopSnake();
+        }
+    };
+
+    termBody.addEventListener('click', () => {
+        if (window.innerWidth > 768) termInput.focus();
+    });
 
     // --- Command Router ---
     function processCommand(cmd) {
@@ -314,6 +334,28 @@
     function startSnake() {
         currentGame = 'snake';
         document.getElementById('terminal-input-line').style.display = 'none';
+
+        const isMobile = window.innerWidth <= 768;
+        const gbOverlay = document.getElementById('gb-overlay');
+        const gbScreen = document.getElementById('gb-screen-container');
+
+        if (isMobile && gbOverlay && gbScreen) {
+            gbScreen.innerHTML = '';
+            gbScreen.appendChild(gameCanvas);
+            gbOverlay.style.display = 'flex';
+            gameCanvas.style.width = '100%';
+            gameCanvas.style.height = '100%';
+            gameCanvas.style.objectFit = 'contain';
+            gameCanvas.style.margin = '0';
+            gameCanvas.style.border = 'none';
+        } else {
+            document.getElementById('terminal-body').appendChild(gameCanvas);
+            gameCanvas.style.width = 'auto';
+            gameCanvas.style.height = 'auto';
+            gameCanvas.style.margin = '10px auto';
+            gameCanvas.style.border = '1px solid #333';
+        }
+
         gameCanvas.style.display = 'block';
         const W = 400, H = 400, SZ = 20, cols = W / SZ, rows = H / SZ;
         gameCanvas.width = W; gameCanvas.height = H;
@@ -363,9 +405,18 @@
 
         function draw() {
             ctx.fillStyle = '#0d0d0d'; ctx.fillRect(0, 0, W, H);
+
+            // Grid lines
+            ctx.strokeStyle = '#1a1a1a';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < cols; i++) {
+                ctx.beginPath(); ctx.moveTo(i * SZ, 0); ctx.lineTo(i * SZ, H); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(0, i * SZ); ctx.lineTo(W, i * SZ); ctx.stroke();
+            }
+
             ctx.fillStyle = '#ff5f56'; ctx.fillRect(food.x * SZ, food.y * SZ, SZ - 1, SZ - 1);
             snake.forEach((s, i) => { ctx.fillStyle = i === 0 ? '#27c93f' : '#00ff41'; ctx.fillRect(s.x * SZ, s.y * SZ, SZ - 1, SZ - 1); });
-            ctx.fillStyle = '#666'; ctx.font = '12px JetBrains Mono';
+            ctx.fillStyle = '#aaa'; ctx.font = '14px JetBrains Mono';
             ctx.fillText('Score: ' + score + (aiMode ? ' [AI]' : ' [Manual]'), 8, H - 8);
         }
 
@@ -390,9 +441,17 @@
         clearInterval(gameInterval); gameInterval = null;
         currentGame = null;
         gameCanvas.style.display = 'none';
+
+        const gbOverlay = document.getElementById('gb-overlay');
+        if (gbOverlay) gbOverlay.style.display = 'none';
+
+        // Put canvas back into terminal if it was moved
+        document.getElementById('terminal-body').appendChild(gameCanvas);
+
         document.getElementById('terminal-input-line').style.display = 'flex';
         if (snakeState.keyHandler) document.removeEventListener('keydown', snakeState.keyHandler);
-        termInput.focus();
+
+        if (window.innerWidth > 768) termInput.focus();
     }
 
     // ==========================================

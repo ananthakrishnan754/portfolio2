@@ -234,12 +234,145 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .project-card {
-        width: 300px;
+
+      /* Base Adjustments */
+      section {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+      }
+
+      #about,
+      #experience,
+      #projects,
+      #contact {
+        padding-top: 80px !important;
+        padding-bottom: 80px !important;
+      }
+
+      /* Hero Mobile Updates */
+      #hero {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
       }
 
       .hero-side-text {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        top: 20% !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      #hero-image img {
+        height: 60vh !important;
+        object-position: center bottom;
+      }
+
+      .marquee-track-slow span {
+        font-size: 35vw !important;
+      }
+
+      /* Glass Nav Bottom Bar for Mobile */
+      .glass-nav {
+        top: auto !important;
+        bottom: 24px !important;
+        width: calc(100% - 48px) !important;
+        left: 24px !important;
+        transform: translateX(0) !important;
+        padding: 14px 20px !important;
+        justify-content: center !important;
+        gap: 16px !important;
+        border-radius: 24px !important;
+        box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.15) !important;
+      }
+
+      .glass-nav .nav-links {
+        display: flex !important;
+        width: 100%;
+        justify-content: space-between !important;
+        gap: 0 !important;
+      }
+
+      .glass-nav .nav-links a {
+        font-size: 11px !important;
+        letter-spacing: 0.5px;
+        font-weight: 600 !important;
+      }
+
+      .glass-nav>a:first-child,
+      .glass-nav>a:last-child {
+        display: none !important;
+      }
+
+      /* About Section */
+      #about .fa-arrow-up {
         display: none;
+      }
+
+      h2.font-display {
+        font-size: clamp(40px, 12vw, 60px) !important;
+        margin-bottom: 24px !important;
+      }
+
+      /* Experience Section */
+      #experience h2.font-display {
+        font-size: clamp(38px, 11vw, 60px) !important;
+        margin-bottom: 32px !important;
+      }
+
+      .timeline-item {
+        margin-bottom: 32px !important;
+      }
+
+      .timeline-item h3.font-display {
+        font-size: 20px !important;
+      }
+
+      /* Projects */
+      .works-grid {
+        padding: 0 !important;
+        gap: 24px;
+        grid-template-columns: 1fr;
+      }
+
+      .work-card {
+        padding-top: 100px;
+        margin-top: 24px;
+      }
+
+      .work-card-img {
+        width: 120px;
+        height: 120px;
+        margin-top: -140px;
+      }
+
+      .work-card-title {
+        font-size: 22px;
+      }
+
+      /* Contact / Terminal */
+      .contact-card {
+        height: auto;
+        min-height: 480px;
+      }
+
+      #terminal {
+        padding: 60px 16px !important;
+      }
+
+      #terminal-body {
+        min-height: 300px !important;
+        max-height: 60vh !important;
+      }
+
+      #quick-commands {
+        display: flex !important;
       }
     }
 
@@ -1353,6 +1486,21 @@
             style="flex:1; background:transparent; border:none; outline:none; color:#fff; font-family:'JetBrains Mono',monospace; font-size:14px; caret-color:#00ff41;">
         </div>
         <canvas id="game-canvas" style="display:none; margin:10px auto; border:1px solid #333;"></canvas>
+        <!-- Mobile Quick Commands -->
+        <div id="quick-commands"
+          style="display:none; flex-wrap:wrap; gap:8px; margin-top:20px; font-family:'JetBrains Mono', monospace;">
+          <button onclick="runMobileCmd('help')"
+            style="background:#1a1a1a; color:#00ff41; border:1px solid #333; padding:8px 12px; border-radius:4px; font-size:12px; cursor:pointer;">help</button>
+          <button onclick="runMobileCmd('about')"
+            style="background:#1a1a1a; color:#00ff41; border:1px solid #333; padding:8px 12px; border-radius:4px; font-size:12px; cursor:pointer;">about</button>
+          <button onclick="runMobileCmd('projects')"
+            style="background:#1a1a1a; color:#00ff41; border:1px solid #333; padding:8px 12px; border-radius:4px; font-size:12px; cursor:pointer;">projects</button>
+          <button onclick="runMobileCmd('play snake')"
+            style="background:#1a1a1a; color:#ffbd2e; border:1px solid #333; padding:8px 12px; border-radius:4px; font-size:12px; cursor:pointer;">play
+            snake</button>
+          <button onclick="runMobileCmd('clear')"
+            style="background:#1a1a1a; color:#ff5f56; border:1px solid #333; padding:8px 12px; border-radius:4px; font-size:12px; cursor:pointer;">clear</button>
+        </div>
       </div>
     </div>
   </section>
@@ -1727,17 +1875,35 @@
   <!-- ╚══════════════════════════════════════════╝ -->
   <script>
     // ==========================================
-    // SCROLL REVEAL
+    // FLUID SCROLL REVEAL (GSAP)
     // ==========================================
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.15 });
+    gsap.registerPlugin(ScrollTrigger);
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach((el) => {
+      // Overwrite the CSS class behavior safely, letting GSAP manage opacity and transform
+      el.classList.add('visible');
+      el.style.transition = 'none';
+
+      const yOffset = window.innerWidth < 768 ? 30 : 60;
+
+      gsap.fromTo(el,
+        {
+          opacity: 0,
+          y: yOffset
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: window.innerWidth < 768 ? 0.9 : 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: window.innerWidth < 768 ? 'top 92%' : 'top 85%',
+            toggleActions: 'play none none reverse' // Fluid fading in and out on scroll
+          }
+        }
+      );
+    });
 
 
     // ==========================================
@@ -2074,6 +2240,89 @@
   <!-- Interactive Terminal Engine -->
   <script src="terminal.js"></script>
 
+
+  <!-- GAMEBOY MOBILE OVERLAY -->
+  <div id="gb-overlay"
+    style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.85); backdrop-filter:blur(5px); flex-direction:column; justify-content:center; align-items:center;">
+    <div
+      style="background:#e0e0e0; border-radius:10px 10px 40px 10px; padding:20px; width:90%; max-width:360px; box-shadow:inset -5px -5px 15px rgba(0,0,0,0.1), 0 20px 40px rgba(0,0,0,0.5);">
+      <!-- Screen Area -->
+      <div style="background:#222; padding:15px; border-radius:10px 10px 30px 10px; margin-bottom:24px;">
+        <div id="gb-screen-container"
+          style="background:#8bac0f; border:inset 3px #555; height:220px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+          <!-- Canvas moved here by JS -->
+        </div>
+        <div
+          style="color:#aaa; font-size:10px; font-family:'Inter', sans-serif; text-transform:uppercase; margin-top:8px; text-align:center; font-weight:600; letter-spacing:1px;">
+          DOT MATRIX WITH STEREO SOUND</div>
+      </div>
+
+      <!-- Controls -->
+      <div
+        style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:20px; padding:0 10px;">
+        <!-- D-Pad -->
+        <div style="position:relative; width:90px; height:90px;">
+          <button
+            style="position:absolute; top:0; left:30px; width:30px; height:30px; background:#333; border:none; border-radius:5px 5px 0 0; cursor:pointer;"
+            onmousedown="gbBtn('ArrowUp'); event.preventDefault();"
+            ontouchstart="gbBtn('ArrowUp'); event.preventDefault();"></button>
+          <button
+            style="position:absolute; top:30px; left:0; width:30px; height:30px; background:#333; border:none; border-radius:5px 0 0 5px; cursor:pointer;"
+            onmousedown="gbBtn('ArrowLeft'); event.preventDefault();"
+            ontouchstart="gbBtn('ArrowLeft'); event.preventDefault();"></button>
+          <div
+            style="position:absolute; top:30px; left:30px; width:30px; height:30px; background:#333; display:flex; align-items:center; justify-content:center;">
+            <div style="width:10px; height:10px; background:#222; border-radius:50%;"></div>
+          </div>
+          <button
+            style="position:absolute; top:30px; left:60px; width:30px; height:30px; background:#333; border:none; border-radius:0 5px 5px 0; cursor:pointer;"
+            onmousedown="gbBtn('ArrowRight'); event.preventDefault();"
+            ontouchstart="gbBtn('ArrowRight'); event.preventDefault();"></button>
+          <button
+            style="position:absolute; top:60px; left:30px; width:30px; height:30px; background:#333; border:none; border-radius:0 0 5px 5px; cursor:pointer;"
+            onmousedown="gbBtn('ArrowDown'); event.preventDefault();"
+            ontouchstart="gbBtn('ArrowDown'); event.preventDefault();"></button>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:flex; gap:16px; transform:rotate(-20deg);">
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <button
+              style="width:44px; height:44px; border-radius:50%; background:#9c0a22; border:none; cursor:pointer; box-shadow:inset -2px -2px 5px rgba(0,0,0,0.5);"
+              onmousedown="gbBtn('Escape'); event.preventDefault();"
+              ontouchstart="gbBtn('Escape'); event.preventDefault();"></button>
+            <div style="font-size:12px; font-weight:bold; color:#777; margin-top:6px;">B</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; margin-top:-15px;">
+            <button
+              style="width:44px; height:44px; border-radius:50%; background:#9c0a22; border:none; cursor:pointer; box-shadow:inset -2px -2px 5px rgba(0,0,0,0.5);"
+              onmousedown="gbBtn('a'); event.preventDefault();"
+              ontouchstart="gbBtn('a'); event.preventDefault();"></button>
+            <div style="font-size:12px; font-weight:bold; color:#777; margin-top:6px;">A</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Start/Select -->
+      <div style="display:flex; justify-content:center; gap:20px; padding-bottom:10px;">
+        <div style="text-align:center;">
+          <button
+            style="width:40px; height:12px; background:#777; border:none; border-radius:6px; transform:rotate(-20deg); cursor:pointer; box-shadow:inset -1px -1px 3px rgba(0,0,0,0.4);"
+            onmousedown="gbBtn('Escape'); event.preventDefault();"
+            ontouchstart="gbBtn('Escape'); event.preventDefault();"></button>
+          <div style="font-size:9px; font-weight:bold; color:#777; text-transform:uppercase; margin-top:8px;">Quit</div>
+        </div>
+        <div style="text-align:center;">
+          <button
+            style="width:40px; height:12px; background:#777; border:none; border-radius:6px; transform:rotate(-20deg); cursor:pointer; box-shadow:inset -1px -1px 3px rgba(0,0,0,0.4);"
+            onmousedown="gbBtn('a'); event.preventDefault();"
+            ontouchstart="gbBtn('a'); event.preventDefault();"></button>
+          <div style="font-size:9px; font-weight:bold; color:#777; text-transform:uppercase; margin-top:8px;">AI /
+            Manual</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
