@@ -18,6 +18,7 @@
     let snakeState = {};
     let tttState = {};
     let c4State = {};
+    let marioState = {};
 
     // --- Utilities ---
     function appendOutput(text, color) {
@@ -160,7 +161,7 @@
   <span style="color:#27c93f">github</span>        GitHub activity &amp; repos
   <span style="color:#27c93f">resume</span>        Download resume
   <span style="color:#27c93f">run [name]</span>    Launch project details
-  <span style="color:#27c93f">play [game]</span>   Play a game (snake, tictactoe, connect4)
+  <span style="color:#27c93f">play [game]</span>   Play a game (snake, mario, tictactoe, connect4)
   <span style="color:#27c93f">neofetch</span>      System info
   <span style="color:#27c93f">clear</span>         Clear the terminal
   <span style="color:#27c93f">ls</span>            List files</div><div style="color:#666;margin-top:8px">  💡 Try some hidden commands too...</div>`);
@@ -323,9 +324,121 @@
         if (g === 'snake') startSnake();
         else if (g === 'tictactoe' || g === 'ttt') startTicTacToe();
         else if (g === 'connect4' || g === 'c4') startConnect4();
+        else if (g === 'mario') startMario();
         else appendHTML(`<div style="color:#ffbd2e;margin:8px 0">Available Games:</div><div style="color:#aaa">  <span style="color:#27c93f">play snake</span>       🐍 Snake with AI Mode
+  <span style="color:#27c93f">play mario</span>       🍄 Retro Platformer
   <span style="color:#27c93f">play tictactoe</span>   ❌ AI Tic-Tac-Toe
   <span style="color:#27c93f">play connect4</span>    🔴 Connect-4 vs AI</div>`);
+    }
+
+    // ==========================================
+    // MARIO GAME
+    // ==========================================
+    function startMario() {
+        currentGame = 'mario';
+        document.getElementById('terminal-input-line').style.display = 'none';
+
+        const isMobile = window.innerWidth <= 768;
+        const gbOverlay = document.getElementById('gb-overlay');
+        const gbScreen = document.getElementById('gb-screen-container');
+
+        if (isMobile && gbOverlay && gbScreen) {
+            gbScreen.innerHTML = '';
+            gbScreen.appendChild(gameCanvas);
+            gbOverlay.style.display = 'flex';
+            gameCanvas.style.width = '100%';
+            gameCanvas.style.height = '100%';
+            gameCanvas.style.objectFit = 'contain';
+            gameCanvas.style.margin = '0';
+            gameCanvas.style.border = 'none';
+        } else {
+            document.getElementById('terminal-body').appendChild(gameCanvas);
+            gameCanvas.style.width = 'auto';
+            gameCanvas.style.height = 'auto';
+            gameCanvas.style.margin = '10px auto';
+            gameCanvas.style.border = '1px solid #333';
+        }
+
+        gameCanvas.style.display = 'block';
+        const W = 400, H = 400;
+        gameCanvas.width = W; gameCanvas.height = H;
+        const ctx = gameCanvas.getContext('2d');
+
+        let player = { x: 50, y: H - 40, w: 20, h: 20, vy: 0, color: '#e52521' };
+        let gravity = 0.6, jumpPower = -11, isGrounded = true, score = 0, frames = 0;
+        let obstacles = [], speed = 4, gameActive = true;
+
+        appendOutput('🍄 Mario Runner! Press Space/Up/A to jump, Q/Esc to quit', '#ffbd2e');
+
+        function update() {
+            if (!gameActive) return;
+            player.vy += gravity;
+            player.y += player.vy;
+            if (player.y >= H - 40) { player.y = H - 40; player.vy = 0; isGrounded = true; }
+
+            if (frames % Math.max(40, 90 - Math.floor(frames / 100)) === 0) {
+                obstacles.push({ x: W, y: H - 50, w: 25, h: 30, color: '#00aa00' });
+            }
+            if (frames > 500 && frames % 150 === 0) {
+                obstacles.push({ x: W, y: H - 90, w: 20, h: 20, color: '#a05000' });
+            }
+
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                let obs = obstacles[i];
+                obs.x -= speed;
+
+                if (player.x < obs.x + obs.w && player.x + player.w > obs.x &&
+                    player.y < obs.y + obs.h && player.y + player.h > obs.y) {
+                    gameActive = false;
+                    appendOutput('Game Over! Score: ' + score, '#ff5f56');
+                    setTimeout(stopMario, 2000);
+                    return;
+                }
+                if (obs.x + obs.w < 0) { obstacles.splice(i, 1); score++; }
+            }
+            frames++;
+            if (frames % 400 === 0) speed += 0.5;
+        }
+
+        function draw() {
+            ctx.fillStyle = '#5c94fc'; ctx.fillRect(0, 0, W, H);
+            ctx.fillStyle = '#c84c0c'; ctx.fillRect(0, H - 20, W, 20);
+            ctx.fillStyle = player.color; ctx.fillRect(player.x, player.y, player.w, player.h);
+            obstacles.forEach(obs => { ctx.fillStyle = obs.color; ctx.fillRect(obs.x, obs.y, obs.w, obs.h); });
+            ctx.fillStyle = '#ffffff'; ctx.font = '16px JetBrains Mono'; ctx.fillText('Score: ' + score, 10, 20);
+            if (!gameActive) {
+                ctx.fillStyle = 'rgba(0,0,0,0.5)'; ctx.fillRect(0, 0, W, H);
+                ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.fillText('GAME OVER', W / 2, H / 2); ctx.textAlign = 'left';
+            }
+        }
+
+        function loop() {
+            update(); draw();
+            if (currentGame === 'mario' && gameActive) requestAnimationFrame(loop);
+        }
+
+        function marioKeyHandler(e) {
+            if (currentGame !== 'mario') return;
+            if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'w' || e.key === 'a' || e.key === 'A') {
+                if (isGrounded && gameActive) { player.vy = jumpPower; isGrounded = false; }
+                e.preventDefault();
+            }
+            if (e.key === 'Escape' || e.key === 'q') stopMario();
+        }
+        document.addEventListener('keydown', marioKeyHandler);
+        marioState.keyHandler = marioKeyHandler;
+        loop();
+    }
+
+    function stopMario() {
+        currentGame = null;
+        gameCanvas.style.display = 'none';
+        const gbOverlay = document.getElementById('gb-overlay');
+        if (gbOverlay) gbOverlay.style.display = 'none';
+        document.getElementById('terminal-body').appendChild(gameCanvas);
+        document.getElementById('terminal-input-line').style.display = 'flex';
+        if (marioState.keyHandler) document.removeEventListener('keydown', marioState.keyHandler);
+        if (window.innerWidth > 768) termInput.focus();
     }
 
     // ==========================================
@@ -360,7 +473,7 @@
         const W = 400, H = 400, SZ = 20, cols = W / SZ, rows = H / SZ;
         gameCanvas.width = W; gameCanvas.height = H;
         const ctx = gameCanvas.getContext('2d');
-        let snake = [{ x: 5, y: 5 }], dir = { x: 1, y: 0 }, food = placeFood(), score = 0, aiMode = false, speed = 120;
+        let snake = [{ x: 5, y: 5 }], dir = { x: 1, y: 0 }, nextDir = { x: 1, y: 0 }, food = placeFood(), score = 0, aiMode = false, speed = 180;
         appendOutput('🐍 Snake Game! Arrow keys to move, A=toggle AI, Q/Esc=quit', '#ffbd2e');
 
         function placeFood() {
@@ -394,6 +507,8 @@
 
         function update() {
             if (aiMode) dir = aStar();
+            else dir = nextDir;
+
             const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
             if (head.x < 0 || head.x >= cols || head.y < 0 || head.y >= rows || snake.some(s => s.x === head.x && s.y === head.y)) {
                 appendOutput('Game Over! Score: ' + score, '#ff5f56'); stopSnake(); return;
@@ -425,7 +540,7 @@
             const dirs = { ArrowUp: { x: 0, y: -1 }, ArrowDown: { x: 0, y: 1 }, ArrowLeft: { x: -1, y: 0 }, ArrowRight: { x: 1, y: 0 } };
             if (dirs[e.key] && !aiMode) {
                 const d = dirs[e.key];
-                if (d.x !== -dir.x || d.y !== -dir.y) dir = d;
+                if (d.x !== -dir.x || d.y !== -dir.y) nextDir = d;
                 e.preventDefault();
             }
             if (e.key === 'a' || e.key === 'A') { aiMode = !aiMode; appendOutput(aiMode ? 'AI Mode ON' : 'Manual Mode', '#ffbd2e'); }
