@@ -1,0 +1,15 @@
+SEO Next Steps for Ananthakrishnan NukeLabs:
+
+1. Google Search Console (CRITICAL)
+   - Go to Google Search Console (https://search.google.com/search-console).
+   - Add your property as a "Domain" or "URL Prefix": `https://ananthakrishnans.me/`.
+   - Verify ownership (usually via DNS TXT record if you manage the domain with a registrar).
+   - Once verified, navigate to the "Sitemaps" section in the left sidebar.
+   - Enter `sitemap.xml` and click "Submit". This explicitly forces Google to crawl your new SEO tags immediately.
+
+2. Backlinks (Boosts Ranking)
+   - Add the link `https://ananthakrishnans.me/` to your LinkedIn Profile, Twitter (X) bio, and GitHub description.
+   - If Nuke Labs has a company website, ensure your profile/CTO page there specifically hyperlinks to your personal portfolio domain.
+
+3. Monitoring
+   - Use Google Search Console to monitor the phrase "Ananthakrishnan NukeLabs". Over the next few weeks, as Google indexes the site, you will see your website start to rank and register impressions for this keyword.
