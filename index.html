@@ -1009,12 +1009,15 @@
       padding: 48px;
     }
 
+    .works-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
     .work-card {
       position: relative;
       background: linear-gradient(145deg, #161616, #0A0A0A);
       border-radius: 24px;
-      padding: 24px;
-      padding-top: 120px;
+      padding: 28px;
       border: 1px solid rgba(255, 255, 255, 0.05);
       cursor: pointer;
       overflow: visible;
@@ -1022,6 +1025,7 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       text-decoration: none;
       display: block;
+      min-height: 220px;
     }
 
     .work-card::before {
@@ -1054,46 +1058,39 @@
       pointer-events: none;
     }
 
-    .work-card-img {
-      position: relative;
-      width: 160px;
-      height: 160px;
-      margin: -160px auto 20px;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.8));
-      z-index: 10;
-    }
-
-    .work-card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      mix-blend-mode: screen;
-      /* Removes black bg */
-      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .work-card:hover .work-card-img {
-      transform: translateY(-20px) scale(1.15);
-    }
-
     .work-card-content {
       position: relative;
       z-index: 5;
     }
 
+    .work-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .work-card:hover .work-card-icon {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
     .work-card-title {
       font-family: 'Anton', sans-serif;
       color: #FFF;
-      font-size: 26px;
-      margin-bottom: 8px;
+      font-size: 24px;
+      margin-bottom: 6px;
       letter-spacing: 0.02em;
     }
 
     .work-card-subtitle {
       font-size: 13px;
       color: #888;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       font-weight: 500;
     }
 
@@ -1284,8 +1281,8 @@
       }
 
       .work-card {
-        padding-top: 100px;
-        margin-top: 60px;
+        padding: 22px;
+        min-height: 180px;
       }
     }
   </style>
@@ -1306,12 +1303,10 @@
       <!-- Card 1 - Predator Helios -->
       <a href="javascript:void(0)" class="work-card reveal" onclick="openModal('predator')">
         <div class="work-card-bg"></div>
-        <div class="work-card-img">
-          <img src="predator.png" alt="Predator Helios Control Center">
-        </div>
         <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(255,107,53,0.15);color:#ff6b35;">⚡</div>
           <h3 class="work-card-title">Predator Helios CC</h3>
-          <p class="work-card-subtitle">Linux Control Center</p>
+          <p class="work-card-subtitle">Linux hardware control center for Acer Predator laptops</p>
           <div class="work-card-footer">
             <span class="work-card-tech">Python</span>
             <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
@@ -1320,15 +1315,13 @@
       </a>
 
       <!-- Card 2 - TimeTraveller -->
-      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.1s;"
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.08s;"
         onclick="openModal('timetravel')">
         <div class="work-card-bg"></div>
-        <div class="work-card-img">
-          <img src="timetravel.png" alt="TimeTraveller AI Face Aging">
-        </div>
         <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(155,89,255,0.15);color:#9b59ff;">🎭</div>
           <h3 class="work-card-title">TimeTraveller</h3>
-          <p class="work-card-subtitle">AI Face Aging</p>
+          <p class="work-card-subtitle">Offline AI face aging — Stable Diffusion, no cloud</p>
           <div class="work-card-footer">
             <span class="work-card-tech">Python / AI</span>
             <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
@@ -1337,15 +1330,13 @@
       </a>
 
       <!-- Card 3 - AI Waste Sorter -->
-      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.2s;"
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.15s;"
         onclick="openModal('wastesort')">
         <div class="work-card-bg"></div>
-        <div class="work-card-img">
-          <img src="wastesort.png" alt="AI Waste Sorter">
-        </div>
         <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(46,204,113,0.15);color:#2ecc71;">♻️</div>
           <h3 class="work-card-title">AI Waste Sorter</h3>
-          <p class="work-card-subtitle">Smart Segregation System</p>
+          <p class="work-card-subtitle">Raspberry Pi + CV smart waste segregation system</p>
           <div class="work-card-footer">
             <span class="work-card-tech">Raspberry Pi</span>
             <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
@@ -1356,12 +1347,10 @@
       <!-- Card 4 - WhatsApp Summarizer -->
       <a href="javascript:void(0)" class="work-card reveal" onclick="openModal('whatsapp')">
         <div class="work-card-bg"></div>
-        <div class="work-card-img">
-          <img src="whatsappsumm.png" alt="WhatsApp Summarizer">
-        </div>
         <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(37,211,102,0.15);color:#25d366;">💬</div>
           <h3 class="work-card-title">WhatsApp Summarizer</h3>
-          <p class="work-card-subtitle">AI Notification Reader</p>
+          <p class="work-card-subtitle">AI notification reader with voice transcription</p>
           <div class="work-card-footer">
             <span class="work-card-tech">Gemini AI</span>
             <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
@@ -1369,16 +1358,29 @@
         </div>
       </a>
 
-      <!-- Card 5 - Pothole Radar -->
-      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.1s;"
+      <!-- Card 5 - Review Flow -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.08s;"
+        onclick="openModal('reviewflow')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(52,152,219,0.15);color:#3498db;">🔍</div>
+          <h3 class="work-card-title">Review Flow</h3>
+          <p class="work-card-subtitle">TypeScript code review workflow automation tool</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">TypeScript</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 6 - Pothole Radar -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.15s;"
         onclick="openModal('pothole')">
         <div class="work-card-bg"></div>
-        <div class="work-card-img">
-          <img src="pothole.png" alt="Pothole Radar App">
-        </div>
         <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(231,76,60,0.15);color:#e74c3c;">📡</div>
           <h3 class="work-card-title">Pothole Radar</h3>
-          <p class="work-card-subtitle">Flutter Mobile App</p>
+          <p class="work-card-subtitle">Flutter app for road condition detection & reporting</p>
           <div class="work-card-footer">
             <span class="work-card-tech">Flutter / Dart</span>
             <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
@@ -1386,18 +1388,89 @@
         </div>
       </a>
 
-      <!-- Card 6 - ESP32 Ethernet -->
-      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.2s;"
+      <!-- Card 7 - Leaf Disease Detection -->
+      <a href="javascript:void(0)" class="work-card reveal" onclick="openModal('leaf')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(39,174,96,0.15);color:#27ae60;">🌿</div>
+          <h3 class="work-card-title">Leaf Disease Detection</h3>
+          <p class="work-card-subtitle">ML-based plant disease identification from leaf images</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">Python / ML</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 8 - NCD Prediction -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.08s;"
+        onclick="openModal('ncd')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(231,76,60,0.15);color:#e74c3c;">🏥</div>
+          <h3 class="work-card-title">NCD Prediction</h3>
+          <p class="work-card-subtitle">ML model for non-communicable disease risk prediction</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">Python / ML</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 9 - ESP32 Ethernet -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.15s;"
         onclick="openModal('esp32eth')">
         <div class="work-card-bg"></div>
-        <div class="work-card-img">
-          <img src="esp32eth.png" alt="ESP32 Ethernet">
-        </div>
         <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(52,152,219,0.15);color:#3498db;">🔌</div>
           <h3 class="work-card-title">ESP32 Ethernet</h3>
-          <p class="work-card-subtitle">W5500 Embedded Stack</p>
+          <p class="work-card-subtitle">W5500-based wired networking for IoT</p>
           <div class="work-card-footer">
             <span class="work-card-tech">C / Embedded</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 10 - Smart Dustbin -->
+      <a href="javascript:void(0)" class="work-card reveal" onclick="openModal('dustbin')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(241,196,15,0.15);color:#f1c40f;">🗑️</div>
+          <h3 class="work-card-title">Smart Dustbin</h3>
+          <p class="work-card-subtitle">IoT-enabled waste bin with fill-level monitoring</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">IoT / Embedded</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 11 - FuelSense -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.08s;"
+        onclick="openModal('fuelsense')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(230,126,34,0.15);color:#e67e22;">⛽</div>
+          <h3 class="work-card-title">FuelSense</h3>
+          <p class="work-card-subtitle">Fuel monitoring and management IoT system</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">IoT</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 12 - ESP32 Desk Clock -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.15s;"
+        onclick="openModal('deskclock')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(255,193,7,0.15);color:#ffc107;">🕐</div>
+          <h3 class="work-card-title">ESP32 Desk Clock</h3>
+          <p class="work-card-subtitle">MAX7299 clock with CPU/RAM monitor display</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">C++ / IoT</span>
             <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
           </div>
         </div>
@@ -1439,43 +1512,73 @@
         title: 'Predator Helios Control Center',
         tech: 'Python / Linux',
         desc: 'A complete Linux Control Center for the Acer Predator Helios 16 featuring RGB keyboard control, fan mode switching, and custom fan curves. Built on top of open-source drivers with a brand-new GUI — bringing desktop-grade hardware control to Linux gamers.',
-        img: 'predator.png',
         github: 'https://github.com/ananthakrishnan754/Predator-Helios-16-Linux-Control-Center'
       },
       'timetravel': {
-        title: 'TimeTraveller - AI Face Aging',
+        title: 'TimeTraveller — AI Face Aging',
         tech: 'Python / AI',
         desc: 'A privacy-focused offline web app that uses Generative AI (Stable Diffusion) to simulate facial aging from a single photo. All processing runs locally — no cloud, no API calls. Preserves identity while generating realistic age progression and regression.',
-        img: 'timetravel.png',
         github: 'https://github.com/ananthakrishnan754/time-traveller'
       },
       'wastesort': {
         title: 'AI Waste Sorter',
         tech: 'Raspberry Pi / CV',
         desc: 'Intelligent waste segregation system built with Raspberry Pi and Edge AI. Uses computer vision to classify waste items on a conveyor belt, then servo-controlled flaps route each item into the correct bin. End-to-end hardware-software integration.',
-        img: 'wastesort.png',
         github: 'https://github.com/ananthakrishnan754/ai-waste-sorter-'
       },
       'whatsapp': {
         title: 'WhatsApp Summarizer',
         tech: 'Android / Gemini AI',
         desc: 'AI-powered Android app that reads WhatsApp notifications, summarizes messages, and transcribes voice notes including Malayalam — using Gemini AI. Automatically detects meetings and tasks, and adds events to Google Calendar with one tap.',
-        img: 'whatsappsumm.png',
         github: 'https://github.com/ananthakrishnan754/TODO'
+      },
+      'reviewflow': {
+        title: 'Review Flow',
+        tech: 'TypeScript',
+        desc: 'Code review workflow automation tool built with TypeScript. Streamlines the peer review process with structured pipelines, automated checks, and integration hooks for modern development teams.',
+        github: 'https://github.com/ananthakrishnan754/review-flow'
       },
       'pothole': {
         title: 'Pothole Radar App',
         tech: 'Flutter / Dart',
         desc: 'Cross-platform mobile app built with Flutter for detecting and reporting potholes on roads. Uses real-time sensor data and user reports to map road conditions, helping communities and local authorities prioritize road maintenance.',
-        img: 'pothole.png',
         github: 'https://github.com/ananthakrishnan754/pothole-radar-app'
+      },
+      'leaf': {
+        title: 'Leaf Disease Detection',
+        tech: 'Python / ML',
+        desc: 'Machine learning model for identifying plant diseases from leaf images. Trained on a comprehensive dataset of healthy and diseased leaves, enabling early detection and precision agriculture applications.',
+        github: 'https://github.com/ananthakrishnan754/leaf-disease-detection'
+      },
+      'ncd': {
+        title: 'NCD Prediction Model',
+        tech: 'Python / ML',
+        desc: 'Machine learning model for predicting non-communicable disease risk based on lifestyle and health parameters. Aims to enable early intervention through data-driven health risk assessment.',
+        github: 'https://github.com/ananthakrishnan754/ncd-prediction-ML-model'
       },
       'esp32eth': {
         title: 'ESP32 W5500 Ethernet',
         tech: 'C / Embedded',
         desc: 'Embedded networking project implementing Ethernet connectivity on ESP32 using the W5500 SPI-to-Ethernet controller. Low-level driver development, TCP/IP stack integration, and hardware interfacing for IoT applications requiring reliable wired networking.',
-        img: 'esp32eth.png',
         github: 'https://github.com/ananthakrishnan754/esp32-w5500-ethernet'
+      },
+      'dustbin': {
+        title: 'Smart Dustbin',
+        tech: 'IoT / Embedded',
+        desc: 'IoT-enabled smart dustbin with ultrasonic fill-level monitoring, automatic lid operation, and real-time status reporting. Designed for smart city waste management infrastructure.',
+        github: 'https://github.com/ananthakrishnan754/Smart-dustbin-project'
+      },
+      'fuelsense': {
+        title: 'FuelSense',
+        tech: 'IoT',
+        desc: 'IoT-based fuel monitoring and management system. Tracks fuel levels, consumption patterns, and provides real-time alerts — designed for fleet management and industrial fuel storage applications.',
+        github: 'https://github.com/ananthakrishnan754/fuelsense'
+      },
+      'deskclock': {
+        title: 'ESP32 Desk Clock',
+        tech: 'C++ / IoT',
+        desc: 'ESP32-powered desk clock with MAX7299 7-segment display. Features real-time CPU and RAM monitoring from a connected PC — combining retro display aesthetics with modern system monitoring.',
+        github: 'https://github.com/ananthakrishnan754/esp32-max7299-clock-cpu-ram-monitor'
       }
     };
 
@@ -1484,7 +1587,7 @@
       document.getElementById('modalTitle').innerText = data.title;
       document.getElementById('modalTech').innerText = data.tech;
       document.getElementById('modalDesc').innerText = data.desc;
-      document.getElementById('modalImg').src = data.img;
+      document.getElementById('modalImg').style.display = 'none';
 
       let ghLink = document.getElementById('modalGithub');
       if (data.github) {
