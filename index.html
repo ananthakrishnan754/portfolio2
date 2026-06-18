@@ -1010,7 +1010,7 @@
     }
 
     .works-grid {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
 
     .work-card {
@@ -1476,6 +1476,50 @@
         </div>
       </a>
 
+      <!-- Card 13 - Autonomous Rover -->
+      <a href="javascript:void(0)" class="work-card reveal" onclick="openModal('rover')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(44,62,80,0.15);color:#2c3e50;">🤖</div>
+          <h3 class="work-card-title">Autonomous Rover</h3>
+          <p class="work-card-subtitle">Raspberry Pi rover with YOLO object detection</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">Python / CV</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 14 - Solar Panel Crack Detection -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.08s;"
+        onclick="openModal('solar')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(241,196,15,0.15);color:#f1c40f;">☀️</div>
+          <h3 class="work-card-title">Solar Panel Inspector</h3>
+          <p class="work-card-subtitle">YOLOv8 crack/dust detection + auto-clean</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">Python / CV</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 15 - BikeNav ESP -->
+      <a href="javascript:void(0)" class="work-card reveal" style="transition-delay: 0.15s;"
+        onclick="openModal('bikenav')">
+        <div class="work-card-bg"></div>
+        <div class="work-card-content">
+          <div class="work-card-icon" style="background:rgba(52,73,94,0.15);color:#34495e;">🧭</div>
+          <h3 class="work-card-title">BikeNav</h3>
+          <p class="work-card-subtitle">ESP32 BLE navigation system with TFT display</p>
+          <div class="work-card-footer">
+            <span class="work-card-tech">ESP32 / BLE</span>
+            <div class="work-card-link"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
     </div>
   </section>
 
@@ -1579,6 +1623,24 @@
         tech: 'C++ / IoT',
         desc: 'ESP32-powered desk clock with MAX7299 7-segment display. Features real-time CPU and RAM monitoring from a connected PC — combining retro display aesthetics with modern system monitoring.',
         github: 'https://github.com/ananthakrishnan754/esp32-max7299-clock-cpu-ram-monitor'
+      },
+      'rover': {
+        title: 'Autonomous Rover',
+        tech: 'Python / CV',
+        desc: 'Raspberry Pi-based autonomous rover using YOLOv8 for real-time object detection and navigation. Designed for outdoor terrain with computer vision-based obstacle avoidance and path planning.',
+        github: 'https://github.com/ananthakrishnan754/PI_ROBOT'
+      },
+      'solar': {
+        title: 'Solar Panel Crack Detection & Cleaner',
+        tech: 'Python / CV',
+        desc: 'Real-time solar panel dust and crack detection using YOLOv8 OBB. Streams video from an IP camera, detects defects, and automatically triggers an ESP8266-based cleaning mechanism at the detected coordinates.',
+        github: 'https://github.com/ananthakrishnan754/solar-panel-crack-detection'
+      },
+      'bikenav': {
+        title: 'BikeNav — ESP32 Navigation System',
+        tech: 'ESP32 / BLE',
+        desc: 'Ultra-efficient bike navigation system streaming maps and turn-by-turn directions from a mobile browser to an ESP32 driving an ST7735 TFT display over Bluetooth Low Energy. Features dual-map hybrid architecture with micro-streaming engine.',
+        github: 'https://github.com/ananthakrishnan754/ESP-NAVIGATION-DEVICE'
       }
     };
 
