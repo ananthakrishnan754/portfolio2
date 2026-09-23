@@ -2,72 +2,70 @@
 // ============= DATA =============
 const experiences = [
   {
-    role: "ATL Tinkering Lab Instructor (Freelance)",
-    company: "Jawahar Navodaya Vidyalaya, Chennithala",
-    date: "Nov 2025 – Present",
-    desc: "Mentor students in robotics, IoT, and design thinking through hands-on learning sessions at the Atal Tinkering Lab. Guide young innovators in building practical prototypes and developing problem-solving skills."
+    role: "Embedded Systems Engineer",
+    company: "Nuke Labs",
+    date: "Jan 2024 – Present · Part-time",
+    desc: "Own hardware architecture → firmware → bring-up for robotics, IoT and UAV systems. Full-time previously, part-time now while pursuing an M.Tech in VLSI Design."
+  },
+  {
+    role: "SSCS Mentor",
+    company: "IEEE SSCS Student Branch",
+    date: "Apr 2026 – Present",
+    desc: "Mentor hands-on RTL, firmware, and electronics-simulation workshops for the IEEE Solid-State Circuits Society student branch."
   },
   {
     role: "Secretary",
     company: "IEEE Student Branch, Sree Buddha College",
-    date: "2024 – Present",
+    date: "Jan 2025 – Apr 2026",
     desc: "Coordinate technical workshops, seminars, and events for a community of 80+ members. Oversee official communications, maintain organizational records, and support collaboration across student committees."
+  },
+  {
+    role: "ATL Tinkering Lab Instructor (Freelance)",
+    company: "Jawahar Navodaya Vidyalaya, Chennithala",
+    date: "Oct 2025 – Apr 2026",
+    desc: "Mentor students in robotics, IoT, and design thinking through hands-on learning sessions at the Atal Tinkering Lab."
   },
   {
     role: "Team Lead",
     company: "Entrepreneurship Cell (E-Cell)",
-    date: "2023 – Present",
+    date: "2023 – 2025",
     desc: "Lead a student team to promote innovation and entrepreneurship on campus by organizing startup-focused events, workshops, and industry guest sessions."
   }
 ];
 
 const projects = [
   {
-    title: "MemoryCare – AI Smart Spectacles",
-    desc: "Assistive system for Alzheimer’s patients that recognizes people using an ESP32-CAM and OpenCV-based face recognition pipeline. Images are processed via a Flask server and stored in Firebase, with recognized identities delivered through audio feedback.",
-    tech: "ESP32-CAM, OpenCV, Flask, Firebase, Python"
+    title: "RTL Design Suite — Flip-Flops & ALU",
+    desc: "Digital design suite covering D, JK, SR and T flip-flop families plus a parameterized ALU, every module with a self-checking testbench and waveform verification in ModelSim/QuestaSim.",
+    tech: "Verilog, SystemVerilog, ModelSim"
   },
   {
-    title: "Vision-Based Autonomous Robot (Monocular Navigation)",
-    desc: "Developed an autonomous robot capable of navigating environments using a single monocular camera and computer vision algorithms for perception and obstacle understanding.",
-    tech: "ROS 2, OpenCV, Python, Raspberry Pi"
+    title: "UVM Verification Environment",
+    desc: "Universal Verification Methodology environment around an ALU with constrained-random stimulus, driver/monitor/scoreboard, and functional coverage.",
+    tech: "UVM, SystemVerilog, QuestaSim"
   },
   {
-    title: "AI-Based Waste Sorting Machine",
-    desc: "Computer vision system that automatically classifies and sorts waste materials using machine learning models, enabling smarter recycling and waste management.",
-    tech: "Python, OpenCV, Machine Learning"
+    title: "Material-Engineered PN Diode (Sentaurus)",
+    desc: "PN junction diode simulated in Sentaurus TCAD across Si, Ge, GaAs and 4H-SiC with doping profiles, I-V extraction and recombination analysis.",
+    tech: "Sentaurus TCAD, SDE, SDevice"
   },
   {
-    title: "AI Solar Panel Maintenance System",
-    desc: "Designed an intelligent system for solar panel maintenance featuring automated dust cleaning and AI-based crack detection to improve efficiency and predictive maintenance.",
-    tech: "Computer Vision, Python, Embedded Systems"
+    title: "3-Stack Nanosheet GAA-NMOSFET",
+    desc: "Gate-All-Around 3-stack nanosheet NMOS transistor built and analyzed with Sentaurus Structure Editor and device simulation.",
+    tech: "Sentaurus SDE/SDevice"
   },
   {
-    title: "AI Face Aging Generator",
-    desc: "Developed an AI application capable of generating realistic facial transformations to visualize how a person may look at different ages using generative deep learning models.",
-    tech: "Python, Deep Learning, Computer Vision"
-  },
-  {
-    title: "Warehouse Drone Simulation (e-Yantra 2024–25)",
-    desc: "Built a ROS 2 simulation for warehouse drone navigation and mapping tasks as part of the e-Yantra Robotics Competition.",
-    tech: "ROS 2, Gazebo, Python, OpenCV"
-  },
-  {
-    title: "Vision-Based Hospital Delivery Robot",
-    desc: "Prototype autonomous delivery robot designed for hospital environments, using computer vision and ROS 2 for navigation and package handling.",
-    tech: "ROS 2, Raspberry Pi, OpenCV"
-  },
-  {
-    title: "RK Tech Labs – Client Websites & Web Apps",
-    desc: "Designed and developed multiple professional websites and web applications for clients, focusing on responsive design, performance, and scalable deployment.",
-    tech: "HTML, CSS, JavaScript, Full-Stack Development"
+    title: "Photodiode Engineering",
+    desc: "Photodiode I-V under dark and illumination plus recombination summaries across Si, Ge, GaAs and 4H-SiC.",
+    tech: "Sentaurus, DEVSIM"
   },
   {
     title: "ESP32 IoT Systems Suite",
-    desc: "Collection of IoT devices including smart desk clocks, Spotify controllers, and sensor-based information displays built using ESP32 microcontrollers.",
-    tech: "ESP32, C++, Firebase, IoT"
+    desc: "Collection of embedded devices including Ethernet (W5500) networking, desk clocks with CPU/RAM monitoring, and sensor-based displays.",
+    tech: "ESP32, C/C++, IoT"
   }
 ];
+
 
 // ============= POPULATE CONTENT =============
 function populateCards(containerId, items, isProject = false) {

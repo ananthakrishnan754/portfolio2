@@ -171,54 +171,53 @@
         appendHTML(`<div style="color:#ffbd2e;margin:8px 0">╔═══════════════════════════════════════╗
 ║       SYSTEM STATUS DASHBOARD        ║
 ╚═══════════════════════════════════════╝</div><div style="color:#aaa">  <span style="color:#27c93f">Name:</span>       Ananthakrishnan S
-  <span style="color:#27c93f">Role:</span>       Robotics &amp; Embedded Systems Engineer
-  <span style="color:#27c93f">Location:</span>   Kerala, India
-  <span style="color:#27c93f">Education:</span>  B.Tech ECE, Class of 2026
-  <span style="color:#27c93f">Status:</span>     <span style="color:#27c93f">●</span> Open to opportunities
+  <span style="color:#27c93f">Role:</span>       VLSI Design Engineer (M.Tech) | RTL &amp; Verification
+  <span style="color:#27c93f">Location:</span>   Kochi, Kerala, India
+  <span style="color:#27c93f">Education:</span>  M.Tech VLSI Design @ Amrita | B.Tech ECE
+  <span style="color:#27c93f">Status:</span>     <span style="color:#27c93f">●</span> Open to VLSI roles
 
-  <span style="color:#ffbd2e">── Languages ──</span>
-  Python      <span style="color:#3572A5">██████████</span> 90%
-  C++         <span style="color:#00599c">████████░░</span> 80%
-  JavaScript  <span style="color:#f7df1e">███████░░░</span> 70%
-  C           <span style="color:#555">████████░░</span> 80%
+  <span style="color:#ffbd2e">── RTL &amp; Verification ──</span>
+  Verilog     <span style="color:#3572A5">██████████</span> 90%
+  SystemVerilog <span style="color:#7b2cbf">████████░░</span> 80%
+  QuestaSim   <span style="color:#1f4e79">█████████░</span> 85%
+  ModelSim    <span style="color:#2b6cb0">█████████░</span> 85%
+  UVM         <span style="color:#8e44ad">██████░░░░</span> 60%
 
-  <span style="color:#ffbd2e">── Frameworks ──</span>
-  ROS2        <span style="color:#e74c3c">████████░░</span> 80%
-  OpenCV      <span style="color:#27c93f">█████████░</span> 85%
-  Flask       <span style="color:#fff">███████░░░</span> 70%
+  <span style="color:#ffbd2e">── Analog / Custom ──</span>
+  Cadence Virtuoso <span style="color:#e74c3c">████████░░</span> 80%
+  DRC/LVS     <span style="color:#d35400">████████░░</span> 80%
 
-  <span style="color:#ffbd2e">── Hardware ──</span>
-  ESP32       <span style="color:#00979d">█████████░</span> 90%
-  Arduino     <span style="color:#00979d">█████████░</span> 85%
-  RPi         <span style="color:#c51a4a">████████░░</span> 80%
-  STM32       <span style="color:#03234b">███████░░░</span> 75%</div>`);
+  <span style="color:#ffbd2e">── Device / TCAD ──</span>
+  Sentaurus TCAD <span style="color:#27c93f">█████████░</span> 85%
+  SPICE       <span style="color:#16a085">███████░░░</span> 70%</div>`);
     }
 
     function cmdWhoami() {
         appendHTML(`<div style="color:#aaa">  <span style="color:#fff;font-weight:bold">Ananthakrishnan S</span>
-  Embedded Systems Engineer | Robotics Developer | Applied AI Builder
-  CTO @ Nuke Labs | Secretary, IEEE SB SBCE
-  Location: Alappuzha, Kerala, India</div>`);
+  VLSI Design Engineer (M.Tech) | RTL Design &amp; Verification | Analog/Mixed-Signal
+  Embedded Systems Engineer @ Nuke Labs | Mentor, IEEE SSCS SBC
+  Location: Kochi, Kerala, India</div>`);
     }
 
     function cmdProjects() {
-        appendHTML(`<div style="color:#ffbd2e;margin:8px 0">Projects:</div><div style="color:#aaa">  <span style="color:#27c93f">[1]</span> MemoryCare — AI Spectacles for Alzheimer's
-  <span style="color:#27c93f">[2]</span> Warehouse Drone — ROS2 Simulated Autonomy
-  <span style="color:#27c93f">[3]</span> 6-DOF Robot Arm — Inverse Kinematics
-  <span style="color:#27c93f">[4]</span> STM32 HAL Drivers — Custom Firmware
-  <span style="color:#27c93f">[5]</span> Retro Portfolio — Web Frontend</div><div style="color:#666;margin-top:4px">  Type <span style="color:#27c93f">run memorycare</span> for project details</div>`);
+        appendHTML(`<div style="color:#ffbd2e;margin:8px 0">Projects:</div><div style="color:#aaa">  <span style="color:#27c93f">[1]</span> RTL Design Suite — Flip-Flops &amp; ALU (Verilog/SV)
+  <span style="color:#27c93f">[2]</span> UVM Verification — Coverage-driven env (QuestaSim)
+  <span style="color:#27c93f">[3]</span> PN Diode TCAD — Si/Ge/GaAs/4H-SiC (Sentaurus)
+  <span style="color:#27c93f">[4]</span> 3-Stack Nanosheet GAA-NMOSFET (Sentaurus)
+  <span style="color:#27c93f">[5]</span> Photodiode Engineering — I-V &amp; recombination</div><div style="color:#666;margin-top:4px">  Type <span style="color:#27c93f">run rtlsuite</span> for project details</div>`);
     }
 
     function cmdSkills() {
-        appendHTML(`<div style="color:#ffbd2e;margin:8px 0">Technical Skills:</div><div style="color:#aaa">  Python      <span style="color:#3572A5">██████████████████░░</span> 90%
-  C++         <span style="color:#00599c">████████████████░░░░</span> 80%
-  C           <span style="color:#555">████████████████░░░░</span> 80%
-  JavaScript  <span style="color:#f7df1e">██████████████░░░░░░</span> 70%
-  ROS2        <span style="color:#e74c3c">████████████████░░░░</span> 80%
-  OpenCV      <span style="color:#27c93f">█████████████████░░░</span> 85%
-  ESP32       <span style="color:#00979d">██████████████████░░</span> 90%
-  Embedded    <span style="color:#00979d">█████████████████░░░</span> 85%
-  Git         <span style="color:#f1502f">█████████████████░░░</span> 85%</div>`);
+        appendHTML(`<div style="color:#ffbd2e;margin:8px 0">Technical Skills:</div><div style="color:#aaa">  Verilog     <span style="color:#3572A5">██████████████████░░</span> 90%
+  SystemVerilog <span style="color:#7b2cbf">████████████████░░░░</span> 80%
+  QuestaSim   <span style="color:#1f4e79">█████████████████░░░</span> 85%
+  ModelSim    <span style="color:#2b6cb0">█████████████████░░░</span> 85%
+  Virtuoso    <span style="color:#e74c3c">████████████████░░░░</span> 80%
+  Sentaurus TCAD <span style="color:#27c93f">█████████████████░░░</span> 85%
+  DRC/LVS     <span style="color:#d35400">████████████████░░░░</span> 80%
+  UVM         <span style="color:#8e44ad">████████████░░░░░░░░</span> 60%
+  C/C++       <span style="color:#555">████████████████░░░░</span> 80%
+  Python      <span style="color:#f1502f">█████████████████░░░</span> 85%</div>`);
     }
 
     function cmdContact() {
@@ -232,23 +231,23 @@
     function cmdGithub() {
         appendHTML(`<div style="color:#ffbd2e;margin:8px 0">GitHub — ananthakrishnan754</div><div style="color:#aaa">  <span style="color:#8b949e">📌 Pinned Repositories:</span>
 
-  <span style="color:#58a6ff;font-weight:bold">memorycare-ai-spectacles</span>  ⭐24  🍴5
-    <span style="color:#8b949e">AI spectacles for Alzheimer's — ESP32-CAM + OpenCV</span>
-    <span style="color:#3572A5">● Python</span>
+  <span style="color:#58a6ff;font-weight:bold">sentaurus-tcad-pn-diode</span>
+    <span style="color:#8b949e">Material-engineered PN diode — Si, Ge, GaAs &amp; 4H-SiC</span>
+    <span style="color:#c0392b">● Sentaurus TCAD</span>
 
-  <span style="color:#58a6ff;font-weight:bold">robot-arm-control</span>  ⭐12  🍴3
-    <span style="color:#8b949e">6-DOF robotic arm inverse kinematics with ROS2</span>
-    <span style="color:#3572A5">● Python</span>
+  <span style="color:#58a6ff;font-weight:bold">sentaurus-tcad-3ns-gaafet</span>
+    <span style="color:#8b949e">3-stack Nanosheet GAA-NMOSFET deck &amp; analysis</span>
+    <span style="color:#16a085">● Sentaurus SDE/SDevice</span>
 
-  <span style="color:#58a6ff;font-weight:bold">warehouse-drone-eyantra</span>  ⭐8  🍴2
-    <span style="color:#8b949e">ROS2 Gazebo simulated warehouse drone</span>
-    <span style="color:#3572A5">● Python</span>
+  <span style="color:#58a6ff;font-weight:bold">pnjuctiontcad</span>
+    <span style="color:#8b949e">2D silicon PN junction TCAD deck</span>
+    <span style="color:#27ae60">● Sentaurus TCAD</span>
 
-  <span style="color:#58a6ff;font-weight:bold">stm32-hal-drivers</span>  ⭐8  🍴1
-    <span style="color:#8b949e">Custom HAL drivers for STM32</span>
+  <span style="color:#58a6ff;font-weight:bold">esp32-w5500-ethernet</span>
+    <span style="color:#8b949e">ESP32 Ethernet via W5500 — embedded C</span>
     <span style="color:#555">● C</span>
 
-  <span style="color:#666">Followers: 150 | Following: 42 | Repos: 15+</span></div>`);
+  <span style="color:#666">RTL (Verilog/SystemVerilog) &amp; TCAD-focused profile</span></div>`);
     }
 
     function cmdResume() {
@@ -260,14 +259,14 @@
 
     function cmdRun(name) {
         const projects = {
-            memorycare: { n: 'MemoryCare', d: 'Smart spectacles for Alzheimer\'s patients with real-time face recognition', hw: 'ESP32-CAM', ai: 'Face Recognition (LBPH), OpenCV', be: 'Flask + Firebase', l: 'Python', gh: 'https://github.com/ananthakrishnan754/memorycare-ai-spectacles' },
-            drone: { n: 'Warehouse Drone', d: 'Simulated warehouse drone for eYantra 2024-25', hw: 'Simulated (Gazebo)', ai: 'Path Planning, Object Detection', be: 'ROS2 + OpenCV', l: 'Python', gh: 'https://github.com/ananthakrishnan754/warehouse-drone-eyantra' },
-            robotarm: { n: '6-DOF Robot Arm', d: 'Forward and inverse kinematics for a 6-DoF manipulator', hw: 'Servo Motors', ai: 'Inverse Kinematics Solver', be: 'ROS2', l: 'Python', gh: 'https://github.com/ananthakrishnan754/robot-arm-control' },
-            stm32: { n: 'STM32 HAL Drivers', d: 'Custom Hardware Abstraction Layer for STM32', hw: 'STM32 MCU', ai: 'N/A', be: 'Bare-metal firmware', l: 'C', gh: 'https://github.com/ananthakrishnan754/stm32-hal-drivers' },
-            portfolio: { n: 'Retro Portfolio', d: 'Personal portfolio with interactive terminal and animations', hw: 'N/A', ai: 'N/A', be: 'Static HTML/CSS/JS', l: 'HTML/CSS/JS', gh: 'https://github.com/ananthakrishnan754/portfolio' }
+            rtlsuite: { n: 'RTL Design Suite', d: 'D, JK, SR, T flip-flops + ALU in Verilog/SystemVerilog with self-checking testbenches', hw: 'Simulation (ModelSim/QuestaSim)', ai: 'N/A', be: 'Waveform verification', l: 'Verilog / SV', gh: 'https://github.com/ananthakrishnan754' },
+            uvm: { n: 'UVM Verification', d: 'UVM environment with constrained-random stimulus and functional coverage over an ALU', hw: 'Simulation (QuestaSim)', ai: 'N/A', be: 'Scoreboard + coverage', l: 'SystemVerilog / UVM', gh: 'https://github.com/ananthakrishnan754' },
+            pndiode: { n: 'PN Diode TCAD', d: 'PN diode across Si, Ge, GaAs, 4H-SiC with I-V and recombination analysis', hw: 'Sentaurus TCAD (SDE/SDevice)', ai: 'N/A', be: 'Device simulation', l: 'TCL/Sentaurus', gh: 'https://github.com/ananthakrishnan754/sentaurus-tcad-pn-diode' },
+            gaafet: { n: 'GAA-Nanosheet NMOSFET', d: '3-stack nanosheet Gate-All-Around transistor deck and performance analysis', hw: 'Sentaurus SDE/SDevice', ai: 'N/A', be: 'Device simulation', l: 'TCL/Sentaurus', gh: 'https://github.com/ananthakrishnan754/sentaurus-tcad-3ns-gaafet' },
+            photodiode: { n: 'Photodiode Engineering', d: 'Photodiode I-V (dark + illumination) and recombination across 4 materials', hw: 'Sentaurus + DEVSIM', ai: 'N/A', be: 'Device simulation', l: 'TCL/Python', gh: 'https://github.com/ananthakrishnan754' }
         };
         const p = projects[name];
-        if (!p) { appendOutput('Project not found. Try: memorycare, drone, robotarm, stm32, portfolio', '#ff5f56'); return; }
+        if (!p) { appendOutput('Project not found. Try: rtlsuite, uvm, pndiode, gaafet, photodiode', '#ff5f56'); return; }
         appendHTML(`<div style="color:#ffbd2e;margin:8px 0">╔══════════════════════════════════════════╗
 ║   PROJECT: ${p.n.toUpperCase().padEnd(30)}║
 ╚══════════════════════════════════════════╝</div><div style="color:#aaa">  <span style="color:#27c93f">Description:</span>  ${p.d}
@@ -283,7 +282,7 @@
 <span style="color:#27c93f">       |o_o |       </span><span style="color:#27c93f">─────────────────────────────</span>
 <span style="color:#27c93f">       |:_/ |       </span><span style="color:#27c93f">OS:</span> PortfolioOS v1.0
 <span style="color:#27c93f">      //   \\ \\      </span><span style="color:#27c93f">Host:</span> Ananthakrishnan S
-<span style="color:#27c93f">     (|     | )     </span><span style="color:#27c93f">Kernel:</span> ECE-2026
+<span style="color:#27c93f">     (|     | )     </span><span style="color:#27c93f">Kernel:</span> VLSI-M.Tech
 <span style="color:#27c93f">    /'\\_   _/\`\\    </span><span style="color:#27c93f">Uptime:</span> 21 years
 <span style="color:#27c93f">    \\___)=(___/     </span><span style="color:#27c93f">Shell:</span> portfolio-bash 1.0
                     <span style="color:#27c93f">CPU:</span> Brain v2.0 @ ∞ GHz

@@ -1,38 +1,24 @@
 [
   {
-    "name": "Predator-Helios-16-Linux-Control-Center",
-    "html_url": "https://github.com/ananthakrishnan754/Predator-Helios-16-Linux-Control-Center",
-    "description": "Complete Linux Control Center for Acer Predator Helios 16 — RGB, fan control, GUI",
-    "language": "Python",
-    "topics": ["linux", "hardware-control", "gui", "acer-predator"]
+    "name": "sentaurus-tcad-pn-diode",
+    "html_url": "https://github.com/ananthakrishnan754/sentaurus-tcad-pn-diode",
+    "description": "Material-engineered PN diode simulation — Si, Ge, GaAs, 4H-SiC (Sentaurus TCAD)",
+    "language": "TCL",
+    "topics": ["sentaurus", "tcad", "semiconductor", "pn-junction", "vlsi"]
   },
   {
-    "name": "time-traveller",
-    "html_url": "https://github.com/ananthakrishnan754/time-traveller",
-    "description": "Offline AI Face Aging using Stable Diffusion — local, private, no cloud",
-    "language": "Python",
-    "topics": ["ai", "computer-vision", "stable-diffusion", "face-aging"]
+    "name": "sentaurus-tcad-3ns-gaafet",
+    "html_url": "https://github.com/ananthakrishnan754/sentaurus-tcad-3ns-gaafet",
+    "description": "3-stack Nanosheet Gate-All-Around NMOSFET TCAD deck & performance analysis",
+    "language": "TCL",
+    "topics": ["sentaurus", "tcad", "gaafet", "nanosheet", "vlsi"]
   },
   {
-    "name": "ai-waste-sorter-",
-    "html_url": "https://github.com/ananthakrishnan754/ai-waste-sorter-",
-    "description": "Smart waste segregation with Raspberry Pi, Edge AI, and computer vision",
-    "language": "Python",
-    "topics": ["raspberry-pi", "computer-vision", "edge-ai", "iot"]
-  },
-  {
-    "name": "TODO",
-    "html_url": "https://github.com/ananthakrishnan754/TODO",
-    "description": "AI Android app: WhatsApp summarization, voice transcription, Google Calendar integration",
-    "language": "HTML",
-    "topics": ["android", "gemini-ai", "whatsapp", "voice-transcription"]
-  },
-  {
-    "name": "pothole-radar-app",
-    "html_url": "https://github.com/ananthakrishnan754/pothole-radar-app",
-    "description": "Flutter mobile app for pothole detection and reporting",
-    "language": "Dart",
-    "topics": ["flutter", "mobile", "mapping", "community"]
+    "name": "pnjuctiontcad",
+    "html_url": "https://github.com/ananthakrishnan754/pnjuctiontcad",
+    "description": "2D Silicon PN Junction diode TCAD deck (SDE scheme + SDevice command deck)",
+    "language": "TCL",
+    "topics": ["sentaurus", "tcad", "pn-junction", "semiconductor"]
   },
   {
     "name": "esp32-w5500-ethernet",
@@ -42,13 +28,6 @@
     "topics": ["esp32", "embedded", "ethernet", "iot"]
   },
   {
-    "name": "review-flow",
-    "html_url": "https://github.com/ananthakrishnan754/review-flow",
-    "description": "Code review workflow tool",
-    "language": "TypeScript",
-    "topics": ["typescript", "code-review"]
-  },
-  {
     "name": "esp32-max7299-clock-cpu-ram-monitor",
     "html_url": "https://github.com/ananthakrishnan754/esp32-max7299-clock-cpu-ram-monitor",
     "description": "ESP32 desk clock with MAX7299 — monitors CPU/RAM usage",
@@ -56,10 +35,31 @@
     "topics": ["esp32", "iot", "desk-display"]
   },
   {
-    "name": "WhatsApp-Summarizer",
-    "html_url": "https://github.com/ananthakrishnan754/WhatsApp-Summarizer",
-    "description": "WhatsApp notification summarizer with Gemini AI",
-    "language": "HTML",
-    "topics": ["ai", "whatsapp", "gemini"]
+    "name": "ai-waste-sorter-",
+    "html_url": "https://github.com/ananthakrishnan754/ai-waste-sorter-",
+    "description": "Smart waste segregation with Raspberry Pi, Edge AI, and computer vision",
+    "language": "Python",
+    "topics": ["raspberry-pi", "computer-vision", "edge-ai", "iot"]
+  },
+  {
+    "name": "Predator-Helios-16-Linux-Control-Center",
+    "html_url": "https://github.com/ananthakrishnan754/Predator-Helios-16-Linux-Control-Center",
+    "description": "Complete Linux Control Center for Acer Predator Helios 16 — RGB, fan control, GUI",
+    "language": "Python",
+    "topics": ["linux", "hardware-control", "gui"]
+  },
+  {
+    "name": "pothole-radar-app",
+    "html_url": "https://github.com/ananthakrishnan754/pothole-radar-app",
+    "description": "Flutter mobile app for pothole detection and reporting",
+    "language": "Dart",
+    "topics": ["flutter", "mobile", "mapping"]
+  },
+  {
+    "name": "review-flow",
+    "html_url": "https://github.com/ananthakrishnan754/review-flow",
+    "description": "Code review workflow tool",
+    "language": "TypeScript",
+    "topics": ["typescript", "code-review"]
   }
 ]
